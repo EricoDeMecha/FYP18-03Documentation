@@ -1,0 +1,188 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{a4}
+\usepackage{graphicx}
+\usepackage[table,xcdraw]
+%\graphicspath{ {./Figures/} }
+\usepackage{psfrag}
+\usepackage{amsmath}                     % \boldsymbol{#1}
+\usepackage{amssymb}
+\usepackage{Styles/hangcaption}
+\usepackage{pstricks}
+\usepackage{Styles/pst-node}
+\usepackage{Styles/fancyheadings}
+\usepackage{tocloft}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage[printonlyused]{acronym}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{pdfpages}
+\usepackage{tabulary}
+\usepackage{longtable}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{lscape}
+\usepackage{float}
+
+\usepackage{capt-of}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{rotating}
+
+
+\newdateformat{monthyeardate}{%
+\monthname[\THEMONTH], \THEYEAR}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+    }
+    
+\usepackage{nomencl}
+\makenomenclature
+
+\newcommand\Nomenclature[2]{\nomenclature[#2]{#1}{#2}}
+
+
+% \newcommand{\yesthreeday}{{\AdvanceDate[-4]\today}}
+\epstopdfDeclareGraphicsRule{.pdf}{png}{.png}{convert #1\OutputFile}
+\DeclareGraphicsExtensions{.png,.pdf}
+
+%-----Tex width---------------------------------
+\textwidth 16cm
+
+%-----Line spacing-------------------------------
+\renewcommand{\baselinestretch}{1.5}     % 1,1-zeilig
+
+%---------Add dots in TOC-----------------------
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+%------Paragraph indention-------------------------------
+\setlength{\parskip}{1.5ex plus0.5ex minus0.5ex}
+
+%-----Prevent indent----------------------
+\setlength{\parindent}{0em}
+
+%-----Richtiger Abstand fur Einheiten-------------
+\def\Unit{\hspace{0.25em}}
+
+%-----Definition of the header--------------------
+\pagestyle{fancyplain}
+\renewcommand{\sectionmark}[1]{\markboth{Chapter~\thesection.~#1}{#1}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection\ #1}}
+\rhead[\fancyplain{}{\leftmark}]%
+{\fancyplain{\thepage}{\thepage}} \cfoot{} \plainheadrulewidth
+0.4pt
+
+\makeatletter
+\ifcase \@ptsize \relax % 10pt
+  \addtolength{\headheight}{1\p@}
+\or % 11pt
+  \addtolength{\headheight}{2\p@}
+\or % 12pt
+  \addtolength{\headheight}{3\p@}
+\fi \makeatother
+
+%-----Equations / Figures / Tables numbering according to \ sections
+\makeatletter
+\renewcommand\theequation{\thesection.\arabic{equation}}
+\renewcommand\thefigure{\thesection.\arabic{figure}}
+\renewcommand\thetable{\thesection.\arabic{table}}
+\@addtoreset{equation}{section} \@addtoreset{figure}{section}
+\@addtoreset{table}{section} \makeatother
+
+%-----Useful abbreviations----------------------
+\newcommand{\mr}{\mathrm}
+\newcommand{\bs}[1]{\mbox{$\boldsymbol{#1}$}}
+\newcommand{\degree}[1]{\mbox{$#1^\circ$}}
+
+%------Bibliography style-----------------------
+\bibliographystyle{IEEEtran}
+
+%-----Aufzaehlunstiefe im Literaturverzeichnis---------------
+\setcounter{tocdepth}{3}
+
+\begin{document}
+\pagenumbering{Roman}
+\begin{titlepage}
+  \begin{center}
+      \vspace*{-4.0cm}
+    \begin{figure}[!h]
+\centering
+\includegraphics[width=0.3\linewidth]{Figures/JKUAT_logo}
+\label{fig:jomologo}
+\end{figure}
+   \large{Jomo Kenyatta University of Agriculture and Technology}\\
+    \large{College of Engineering and Technology}\\
+    \large{School of Mechanical, Materials, and Manufacturing Engineering}\\
+   \large{Department of Mechatronic Engineering}\\
+    ------------------------------------------------------------------------------------------------\\[0.1cm]
+    \LARGE{\textbf{Design and Fabrication of an Automated Discharge Collection Unit for the Synthetic Hydro-experimental Machine.}}\\[0.1cm]
+    \LARGE{\textbf{FYP-18-03}}\\[0.4cm]
+    \LARGE{\textbf{INTERIM REPORT}}\\[0.4cm]
+    \large{\textbf{Juma Joel Mwimali (ENM221-0060/2017)}}\\[0.2cm]
+    \large{\textbf{Kipng'eno Erick  (ENM221-0068/2017)}}\\[0.2cm]
+     \large{\textbf{Supervisor}}\\
+	\large{Dr. Anthony Muchiri}\\
+    \large{\small{\monthyeardate\today}}\\
+        ------------------------------------------------------------------------------------------------\\
+    \small{Submitted in partial fulfillment of the requirements for the degree of Bachelor of Science in Mechatronic Engineering at Jomo Kenyatta University of Agriculture and Technology, 2022}\\
+  \end{center}
+\end{titlepage}
+
+
+\input{Files/Declaration}
+\clearpage
+\lhead{Abstract}
+\input{Files/Abstract}
+\clearpage
+\tableofcontents
+\clearpage
+\addcontentsline{toc}{section}{Table of Contents}
+\lhead{List of Figures}
+\addcontentsline{toc}{section}{List of Figures}
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures
+\clearpage
+\lhead{List of Tables}
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables
+\newpage
+\clearpage
+\lhead{Nomenclature}
+\addcontentsline{toc}{section}{Nomenclature}
+\input{Files/ListofAbbreviations}
+\clearpage
+\newpage
+
+\clearpage
+\pagenumbering{arabic}
+  \lhead{Chapter 1. Introduction}
+  \input{Files/Chapter1}
+  \clearpage
+  \lhead{Chapter 2. Literature Review}
+  \input{Files/Chapter2}
+  \clearpage
+  \lhead{Chapter 3. Methodology}
+    \input{Files/Chapter3}
+  \clearpage
+  \lhead{Chapter 4. Results and Discussion}
+    \input{Files/Chapter4}
+  \clearpage
+   \lhead{Chapter 5. Conclusion}
+    \input{Files/Chapter5}
+%  \input{Files/Summary}
+  \clearpage
+%----  Bibliography  ----------------------------------------
+\lhead{REFERENCES}
+\markright{References}
+\addcontentsline{toc}{section}{References}
+\bibliography{Bib/References}
+\clearpage
+\lhead{APPENDICES}
+\markright{APPENDICES}                                
+\addcontentsline{toc}{section}{Appendices}                      
+\input{Files/Appendices}
+\appendix
+\end{document}

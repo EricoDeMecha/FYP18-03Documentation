@@ -1,0 +1,52 @@
+\section{Introduction}
+\label{sec:introduction}
+\subsection{Background}
+Fluid flow measurement involves the measurement of the properties of a smooth and uninterrupted stream of flowing particles that conform to a pipe. These flow properties include the coefficient of discharge, mass flow rate, fluid velocity, differential pressure, and conductivity coefficients \cite{pereira2009flow}. They are altered and measured by flow measuring devices such as the Venturi, the Orifice, turbine flow meters and rotameters \cite{nandagopal2022fluid}. These measurements are finally related to the flow using the Bernoulli's equation. 
+
+\par
+The Synthetic Hydro-Experimental machine, currently installed in JKUAT, is a configurable machine with these flow meters. This machine is used to conduct experiments to establish relationships between the fluid flow properties and the behavior of the flow. It has a lift pump, gate valves, alcohol manometers, pressure gauges, a Pelton turbine, a Venturi, an orifice, and water reservoirs.  During experiments, the lift pump is turned on, and the discharge valve is fully opened to establish a steady flow.  The discharge valve is then closed. The valve is opened in small steps depending on the number of steps required. For each step, the discharge is collected, and its temperature is measured within a specific time interval. Finally, the weight of the collected discharge is also measured.
+
+\subsection{Problem statement}
+
+In fluid flow experiments utilizing the Venturi and the orifice to establish the coefficient of discharge, the discharge steps must be precisely opened, time and temperature measurements must be made concurrently with discharge collection so as to achieve values that are within a reasonable range.The Synthetic Hydro-Experimental machine now in use at JKUAT to establish this relationship, however, is entirely mechanical, making it impossible for a human to do some of the simultaneous measurements. A ball valve regulates the flow rate in small intervals using human intuition, which can be imprecise. As a result, with these discrepancies, the findings might frequently be outside of the acceptable range. Automating the discharge collection process can minimize the error in the results and still preserve the credibility of the experiment.
+
+\subsection{Objectives}
+\subsubsection{Main objective}
+
+ To automate the discharge collection process for the Synthetic Hydro-Experimental machine. 
+
+\subsubsection{Specific objectives}
+
+\begin{enumerate}
+	\item To design an automated discharge flow control unit that can turn the ball valve in steps of less than $1^{0}$ and divert the flow in less than 1 second. Turning of less than $1^{0}$ ensures more runs of experiment can be conducted.
+	\item To design and fabricate a discharge handling unit with automated weight, time and temperature measurements, and a discharge collection tank that can discharge within 2 seconds.
+    \item To design a graphical user interface and a robust control algorithm to integrate the units.
+
+\end{enumerate}
+
+\subsubsection{Expected outcomes}
+A unit with a discharge flow control mechanism that can turn in steps of less than $1^{0}$. Furthermore, to accurately regulate the flow of the discharge into either the collecting tank or into the main reservoir, the mechanism should be able to divert the flow from the pipeline in less than a second. The discharge should then be collected in a  tank that can store up to $0.02m^{3}$ of the discharge. A weight measurement device with a gauge factor of more than 2 to be attached at the bottom of the collection tank. A graphical user interface that allows for the displaying of measurements in this case temperature, time and weight and control of operations
+
+% \begin{enumerate}
+%     \item \textbf{Discharge flow control unit}
+%     \begin{itemize}
+%         \item \textbf{Flow control subunit}-  A discharge flow control mechanism that can turn steps less than $1^{0}$. This is necessary in a case where an experiment is to be done in more than 90 steps( less than $1^{0}$ per step). 
+%         \item \textbf{Diversion subunit} - A mechanism that can divert the flow in less than a second. This is to ensure that only the flow within the time interval is collected.
+%     \end{itemize}
+%     \item \textbf{Discharge Handling unit}
+%     \begin{itemize}
+%         \item \textbf{Discharge collection tank}  - A tank that can collect up to $0.02m^{3}$ of the discharge. This is an estimated quantity of the discharge collected when the valve is fully open for approximately 30 seconds.
+%         \item \textbf{Discharge Weight measurement} -  A weight measurement device with a gauge factor of more than 2. This is necessary to detect even the smallest change in weight.
+%         \item \textbf{Discharge temperature measurement} - An immersible temperature sensor with a resolution of more than 10 bits. This is necessary to detect even the smallest change in the temperature of the discharge.
+%         \item \textbf{Outlet valve} - Approximately 1 inch valve in order to empty the empty approximately $0.02m^{3}$ in the least time possible. 
+%     \end{itemize}
+%     \item \textbf{Interface and Control Unit}
+%     \begin{itemize}
+%         \item \textbf{Micro-controller} - A microcontroller that can drive a 320x240 touch LCD at approximately 30 frames per second. This is to ensure the displayed data is updated on time while maintaining a slick graphical user interface. 
+%         \item \textbf{Application logic} - A robust application logic with auto-calibration capabilities, and event-driven. 
+%     \end{itemize}
+
+% \end{enumerate}
+
+\subsection{Justification}
+This automation will streamline the discharge collecting process while also ensuring the consistency and quality of the data collected in each phase of the fluid flow tests performed on the system. In contrast to the existing condition, such automation allows a single person to perform the experiment without significant effort. Furthermore, the automated system will also be modular, allowing it to be readily attached and detached from the main machine with few modifications.

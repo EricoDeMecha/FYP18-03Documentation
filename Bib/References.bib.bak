@@ -1,0 +1,65 @@
+@BOOK{Saadawia2006,
+  AUTHOR =       {Mahmud-Sami Saadawia},
+  editor =       {},
+  TITLE =        {Analysis},
+  PUBLISHER =    {},
+  YEAR =         {2006},
+  volume =       {},
+  number =       {},
+  series =       {},
+  address =      {},
+  edition =      {},
+  month =        {},
+  note =         {},
+  abstract =     {},
+  isbn =         {},
+  price =        {},
+  keywords =     {},
+  source =       {},
+}
+
+
+@incollection{soeffker99,
+AUTHOR={S{\"o}ffker, D.},
+TITLE={Observer-based measurement of contact forces of the nonlinear rail-wheel contact as a base for advanced traction control},
+BOOKTITLE={Mechatronics and Advanced Motion Control},
+PUBLISHER={HNI-Verlagsschriftenreihe},
+YEAR={1999},
+EDITOR={Wallaschek, J. and L\"uckel, J. and Littmann, W.},
+VOLUME={49},
+PAGES={305--320}}
+
+@book{Ack84,
+AUTHOR={Ackerman, J.},
+TITLE={Abtastregelung},
+ADDRESS={Berlin},
+PUBLISHER={Springer Verlag},
+YEAR={1984}}
+
+@book{Lun01,
+AUTHOR={Lunze, J.},
+TITLE={Regelungstechnik 1: Systemtheoretische Grundlagen Analyse und Entwurf einschleifiger Reglung},
+ADDRESS={Berlin},
+PUBLISHER={Springer Verlag},
+YEAR={2001}}
+
+@book{Lun02,
+AUTHOR={Lunze, J.},
+TITLE={Regelungstechnik 2: Mehrgrößensysteme, Digitale Regelung},
+ADDRESS={Berlin},
+PUBLISHER={Springer Verlag},
+YEAR={2002}}
+
+@book{Fred93,
+AUTHOR={Fred Mcfaden, K.},
+TITLE={DAtabase Management.},
+PUBLISHER={The  BEnjamin/Cummings Publishing Company, Inc},
+EDITION={3rd Edition},
+YEAR={1993}}
+
+@book{Unb97,
+AUTHOR={Unbehauen, H.},
+TITLE={Regelungstechnik I: Klassische Verfahren zur Analyse und Synthese linearer kontinuierlicher Regelsysteme.},
+ADDRESS={Braunschweig/Wiesbaden},
+PUBLISHER={Vieweg Verlag},
+YEAR={1997}}
