@@ -10,6 +10,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: Main_file.tex
+          continue_on_error: true
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v2
         with:

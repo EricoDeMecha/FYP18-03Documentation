@@ -1,182 +1,157 @@
 \section{Methodology}
-\subsection{Overview}
-This project consists of three main units: a discharge flow control unit, a discharge handling  unit, and a software and control unit. 
-\subsection{Discharge flow control unit}
-This unit consist of two main sub-units:
-\begin{enumerate}
-    \item \textbf{Flow control sub-unit} -
-   It controls the dispensing of the discharge from the discharge pipe in steps.
-    \item \textbf{Flow diversion sub-unit} -
-    It diverts the discharge from the main discharge pipe either to the discharge collection tank or to the main reservoir.
-\end{enumerate}
 \par
-\subsubsection{Flow control  sub-unit}
-The current state-of-art of this unit is as shown in Figure \ref{fig:current_discharge_control_unit}. 
+This chapter describes the methodological design and fabrication that was used to achieve the objectives of the project.
+\subsection{Design Overview}
+\par
+This project consists of three main units; A discharge flow control unit, a discharge handling unit, and the software and control unit.
+\subsection{Discharge Flow Control Unit}
+\par
+This unit consists of two main sub-units
+\begin{enumerate}
+    \item Flow control sub unit - It controls the dispensing of the discharge from the discharge pipes in precise steps
+    \item Flow diversion sub unit - Diverts the discharge from the main discharge pipes either into the collection or into the main reservoir. 
+\end{enumerate}
+\subsection{Flow Control Sub unit}
+\subsubsection{Mechanical Design and Fabrication}
+\par
+This section describes the mechanical design and fabrication process for the flow control sub-unit. It consists of a servo motor holder, the LA-T8 linear actuator holder, a diversion flap, links, mounting straps, an interface, and mounting rods.
+\begin{itemize}
+    \item Servo motor holder
+    \par
+The servo motor holder holds the motor in place and at the same time mounts the mounting rods in position through the mounting straps. The holder was designed with slots on both sides for manual realignment and fastening holes to fix the motor in position. The servo bracket used is shown in figure \ref{fig: Servo Holder}
 \begin{figure}[H]
-    \centering
-    \includegraphics[height=0.25\textheight,keepaspectratio]{Figures/ballValve.jpg}
-    \caption{Current discharge control unit}
-    \label{fig:current_discharge_control_unit}
-\end{figure}
-\par
-The $1 \frac{3}{4} inch $ ball valve on the main discharge pipe is opened in steps by hand using the lever. The size of a step is determined by human intuition.
-\par
-\textbf{Design}\\
-To ensure minimum modification of the existing machine, the automation of this unit utilized the existing ball valve on the machine. The opening and closing of the valve is automated using a motorized system that can open the valve in precise steps.
-\par
-\textbf{Motor}
-\par
-The selection and the sizing of the motor for this application was based on the following considerations:
-
-\begin{enumerate}
-    \item The torque required to open and close the ball valve.
-    \item The steps size 
-\end{enumerate}
-\par
-Based on these two considerations, Servo and Stepper Motors were considered.
-  \begin{table}[H]
-    \centering
-      \caption[Stepper versus Servo Motor]{Comparison between Stepper and Servo Motors \cite{nema17}\cite{mg996r}}
-    \begin{tabular}{|m{5cm}|m{5cm}|m{5cm}|}
-    \hline
-  Difference & Servo Motor & Stepper Motor \\ \hline 
-Operation &  Continuous &  Divided into discrete steps \\ \hline
-Control system configuration & Closed loop control system & Open loop control system\\ \hline
-Feedback mechanism & The feedback mechanism exists  &  No feedback mechanism \\ \hline
-Torque speed characteristics &  High torque at high speeds &  High torque at low speeds \\ \hline
-Hunting & Hunting exists during stop position &  No hunting during stop position \\ \hline
-Efficiency & The efficiency of servo motor is comparatively high & The stepper motors are relatively less efficient  \\ \hline
-Driver & Optional & Required \\ \hline
-    \end{tabular}
-    \label{tab:XLA_stuff}
-    \end{table}
-\begin{enumerate}
-    \item \textbf{Stepper motor application}\\
-    % This motor operates by accurately synchronizing position with the pulse signal output from the controller to the driver thus achieving highly accurate positioning and speed control. Stepper motors feature high torque and low vibration at low speeds ideally below 1500rpm, ideal for applications requiring quick fixed positioning in a short distance \cite{wargula2017investigations}. Furthermore, stepper motor rotates with a fixed step angle typically 1.8 degrees for a 2-phase. However, to achieve this requires the use of a micro-step driver.
-    % \par
-    % Besides having full control of rotation and speed, the simple structure of stepper motors is achieved without using electrical components, such as an encoder within the motor. For this reason, stepper motors are very robust and have high reliability with very few failures. As for stopping accuracy, ±0.05° (without cumulative pitch errors) is very accurate\cite{wargula2017investigations}. Because the positioning of stepper motors is performed by open-loop control, and operated by the magnetized stator and magnetic rotor with small teeth, stepper motors have a higher follow-up mechanism toward commands than the servo motors. Also, no hunting occurs when stopping it.
-     \textbf{Design with stepper motor}
-    \begin{enumerate}
-    \item \textbf{Motor selection}\\
-     Nema 17 Stepper motor shown in figure \ref{fig:Nema17 Steppper motor} was selected for this application. The motor can produce a $1.8^0$ step out of the box without a microstep driver. However, with the help of a microstep driver, it can produce as small as $1^0$ step.
-    \begin{figure}[H]
         \centering
-        \includegraphics[width=.3\textwidth, height=.2\textheight]{Figures/Nema17Stepper.jpg}
-        \caption[Nema 17 Stepper motor]{Nema 17 Stepper motor \cite{nema17}}
-        \label{fig:Nema17 Steppper motor}
-    \end{figure}
-    \par
-    Its technical specifications are as shown in the table \ref{tab:nema17_specs}:
-\begin{longtable}{|l|l|}
-\caption[Nema 17 Stepper Motor Technical specification]{Nema 17 Stepper Motor Technical specifications \cite{nema17}}
-\label{tab:nema17_specs}\\
-\hline
-\textbf{Property} & \textbf{Value} \\ \hline
-\endfirsthead
-%
-\multicolumn{2}{c}%
-{{\bfseries Table \thetable\ continued from previous page}} \\
-\hline
-\textbf{Property} & \textbf{Value} \\ \hline
-\endhead
-%
-Rated Voltage & 12V DC \\ \hline
-Current & 1.2A at 4V \\ \hline
-Step Angle & 1.8 deg \\ \hline
-No. of Phases & 4 \\ \hline
-Motor Length & 1.54 inches \\ \hline
-4-wire, 8 inch lead &  \\ \hline
-steps per revolution & 200 \\ \hline
-Operating Temperature & -10 to 40 °C \\ \hline
-Unipolar Holding Torque & 22.2 oz-in \\ \hline
-Maximum torque & 4.8 Kg.cm \\ \hline
-\end{longtable}
-
-    \item \textbf{Ball valve - motor interface}
-    \par
-    An interface is required to connect the motor rotor to the ball valve. The following  two design options were considered for this application:
-    \begin{itemize}
-        \item An interface that could fit the rotor on one end and with claw-like configuration on the other end to turn the existing ball valve's lever.
-        \item An interface that could fit the rotor on one end and with the other end, similar to the lever, that could be used in place of the lever.
-    \end{itemize}
-    \par
-    The second option was chosen since the first choice will introduce a lag in a turn action since the point of action on the lever is displaced from the line of rotation of the rotor.
-    \begin{figure}[H]
+        \includegraphics{Figures/ServoBracket.JPG}
+        \caption{Horizontal Cylindrical tank}
+        \label{fig: Servo Holder}
+        \end{figure}
+\par
+The fabrication was done on the Ultimaker 3D printer. The process involved the conversion of the 3D CAD model shown in figure \ref{fig: Servo Holder} into an STL file. The file was then uploaded into the printer and the required parameters were set up including 80 percent infill (The 80 percent infill was chosen as ideal to provide maximum strength). The printed servo motor holder is as shown in figure \ref{fig: Servo Holder}. 
+\begin{figure}[H]
         \centering
-        \includegraphics[height=0.5\textheight]{Figures/interface.PNG}
+        \includegraphics [width=.40\textwidth]{Figures/servoholder.jpg}
+        \caption{3D printed Servo Holder}
+        \label{fig: Servo Holder}
+        \end{figure}
+ \par
+The dimensions of the servo motor holder are dependent on the dimensions of the MG996R servo motor. The slots on both sides of the holder were to reduce the overall weight of the structure while the wedge was to offer extra support. The rectangular protrusion at the center of the holder is meant to hold and fit the body of the MG966R servo motor which is 40mm by 19mm by 43mm hence the equivalent dimensions. The 1.50mm allowance on the width and 17mm height of the rectangular protrusion is meant to provide cooling to the motor while in operation. Finally, the overall length of the holder (145mm) was guided by the length of the serrated straps keeping in mind that a single mounted rod is used to hold the two pieces together. The two pieces thus had to be of the same length to perfectly fit.  
+    \item LA-T8 holder
+\par
+The LA-T8 holder holds the linear actuator in position. Figure \ref{fig: LA-T8Holder} shows the design of the casing. The holder is mounted along the main discharge pipe. It has to withstand the weight of both the actuator and the diversion plan when in operation.  The overall dimensions (length) as indicated in figure \ref{fig: LA-T8Holder} of the LA-TE holder were guided by the size of the actuator which is [TODO].
+     \begin{figure}[H]
+        \centering
+        \includegraphics [width=.50\textwidth]{Figures/LA-T8Holder.PNG}
+        \caption{LA-T8Holder}
+        \label{fig: LA-T8Holder}
+        \end{figure}
+The width of 95mm is to enable it to be supported onto the ball valve on the machine. The holder is mounted along the main discharge pipe supporting both the diversion flap and the flap support frame. The diameter was determined from the dimensions of the straps. An allowance of 0.5mm was provided to facilitate cooling when the actuator is in operation. Additionally, the slots on the side were to reduce the overall weight of the holder. The 0.5mm holes at the tip of the holder are to bolt the actuator with the holder in place to minimize on vibrations when in operation. Besides, being operated in a water-prone environment, the LA-T8 linear actuator had to be waterproofed from any splashes of the discharge hence the above design. The final 3D printed LA-T8 holder is shown in figure \ref{fig: 3D printed LA-T8 holder} below.
+\begin{figure}[H]
+        \centering
+        \includegraphics [width=.60\textwidth] {Figures/laholder.jpg}
+        \caption{3D printed LA-T8 holder}
+        \label{fig: 3D printed LA-T8 holder}
+        \end{figure}
+
+     \item Straps
+    \par
+The serrated straps, together with the mounting rods are used to hold the servo motor and the diversion flap in position. A total of four were used for this application. Two straps were used to hold the servo motor in place while the rest were used to mount the LA-T8 holder. Figure \ref{fig: Top Strap} and Figure \ref{fig: Bottom Strap} shows the 3D CAD designs of the top and bottom straps.
+\begin{figure}[H]
+        \centering
+        \includegraphics [width=.8\textwidth] {Figures/twoRailStrapsTop.jpg}
+        \caption{Top Strap}
+        \label{fig: Top Strap}
+        \end{figure}
+Form figure \ref{fig: Top Strap}, the overall dimensions of the top strap were a total length of 114mm with an internal diameter of 54mm. The strap is mounted on the existing ball valve casing on the machine with a diameter of 50mm hence the equivalent dimensions. The extra additional 4mm in diameter was to facilitate the ease of mounting the two straps together (top and bottom) to ensure that they firmly fit. The square lot on the strap was to allow for the mounting of the interface. The 30mm by 30mm dimensions were dependent on the protruding dimensions on the existing ball valve casing. The serrations on the straps were to provide more grip while at the same time supporting more load. 
+\begin{figure}[H]
+        \centering
+        \includegraphics [width=.8\textwidth] {Figures/twoRailStrapsBottom.PNG}
+        \caption{Bottom Strap}
+        \label{fig: Bottom Strap}
+        \end{figure}
+All the straps were 3D printed using the Ultimaker 3D printer. The above 3D CAD models were converted into STL files and uploaded onto the printer after which the required parameters were set. Figure \ref{fig: 3D printed top and bottom straps} below shows the results of the process.
+\begin{figure}[H]
+        \centering
+        \includegraphics [width=.8\textwidth] {Figures/IMG_20220930_073222.jpg}
+        \caption{3D printed top and bottom straps}
+        \label{fig: 3D printed top and bottom straps}
+        \end{figure}
+
+        \item Interface
+\par
+The interface is required to connect the motor rotor to the ball valve to facilitate the actuation of the valve in precise steps. figure \ref{fig: Interface} below shows the interface design. It is fixed onto the motor using a nut while the other end is coupled to the motor shaft.
+\begin{figure}[H]
+        \centering
+        \includegraphics [width=.8\textwidth] {Figures/interface.PNG}
         \caption{Interface}
-        \label{fig:Interface}
-    \end{figure}
-    Figure \ref{fig:Interface} shows the interface design. Dimensions of the interface, such as the width of its base, were measured and transferred from the existing lever currently on the machine.
-    \par
-    \item \textbf{Motor cage}
-    \par
-    The cage holds the motor in position on the ball valve as 
-   shown in Figure \ref{fig:motor_cage_stepper}.
-    
-    \begin{figure}[H]
+        \label{fig: Interface}
+        \end{figure}
+The dimensions of the interface such as the width of its base were measured directly and transferred from the existing ball valve. The overall height was dependent on the mounting rods hence the equivalent dimensions. 
+        \item Diversion Flap
+\par
+To divert the discharge, a channel-like flap is used. The design of the flap is shown in figure \ref{fig: Diversion Flap}. The design was such that it can tap the whole stream from the $1\frac{3}{4} inch$ main discharge pipe on the main machine. 
+\begin{figure}[H]
         \centering
-        \includegraphics[height=.55\textheight]{Figures/MotorCage.PNG}
-        \caption{Motor Cage}
-        \label{fig:motor_cage_stepper}
-    \end{figure}
-    
-    The dimensions of the cage in figure \ref{fig:motor_cage_stepper} were guided and determined from that of the stepper motor, the motor-ball valve interface, and that of the existing ball valve socket in order to accurately fit the socket.
-    
-    \item \textbf{Straps}
-    \par
-    It allows for the mounting of the cage onto the main discharge pipe as  shown in figure \ref{fig:mounting_straps_stepper}.
-    
-    \begin{figure}[H]
+        \includegraphics [width=.8\textwidth] {Figures/flap2.PNG}
+        \caption{Diversion Flap}
+        \label{fig: Diversion Flap}
+        \end{figure}
+The flap was cut from a polyvinyl chloride (PVC) pipe as per the applicable dimensions. The 200mm length was determined by the length of the gap between the discharge pipe and the collection tank. It was necessary to ensure that there was free movement of the flap for proper diversion and no strain on the linear actuator. The dimensions of the selected PVC more so the width were guided by the diameter of the discharge pipe.
+        \item Mounting Rods
+\par
+Two mounting rods are used to support the mounted servo motor assembly on the ball valve casing. The design of the rod is as shown in figure \ref{fig: Mounting Rod}
+\begin{figure}[H]
         \centering
-        \includegraphics[height=.65\textheight]{Figures/strap.PNG}
-        \caption{Mounting straps}
-        \label{fig:mounting_straps_stepper}
-    \end{figure}
- \item \textbf{Assembly of discharge flow control using stepper}
-    \par
-    The assembly of the discharge control unit is as shown in figure \ref{fig:stepper_actuated_ball_valve}. Nuts are used to fasten the whole structure on the main discharge pipe.
-    
-    \begin{figure}[H]
+        \includegraphics [width=.5\textwidth] {Figures/ServoMotorMountRods.jpg}
+        \caption{Mounting Rod}
+        \label{fig: Mounting Rod}
+        \end{figure}
+The choice to 3D print the mounting rods was the fact that the design allows for the fasteners on both sides; at one end to fasten the servo motor assembly after alignment and on the other end to fasten the whole flow control unit on the main discharge flow pipe with the help of serrated straps. The protrusion on the surface eliminates the need for another fastener which would add to the overall complexity of the system. Figure \ref{fig: 3D printed Mounting Rod} shows the 3D printed mounting rods. 
+\begin{figure}[H]
         \centering
-        \includegraphics{Figures/ActuatedBallValve.PNG}
-        \caption{Stepper Actuated ball valve}
-        \label{fig:stepper_actuated_ball_valve}
-    \end{figure}
-    
-    % \item \textbf{Finite element analysis of the assembly}
-    % \par
-    % The assembly was stress tested by applying a torque on the motor cage to determine if it could hold at the maximum torque of the motor. To do this, each part of this assembly was be assigned a material. Polyactic acid (PLA) was selected as the common material for all of the parts in the assembly. This is majorly due to the following reasons:
-    % \begin{itemize}
-    %     \item The maximum weight of the part to be supported by the structure is the stepper motor's weight, 450 grams. This can be supported by a 3D printed plastic support. A lighter material such as fiber glass or carbon fiber could be used but they are costlier than the set project's budget.
-    %     \item The parts are complex for fabrication on the currently existing machinery in the university.
-    % \end{itemize}
-    % \item \textbf{Results}
-    % \par
-    % As shown in figure \ref{fig:SimulationResults}, the structure holds for the maximum torque of a Nema 17 stepper motor, $4.9 kg.cm$ or $0.4707192 Nm$.
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics[width=\textwidth]{Figures/ActuatedBallValve-Static-1-1-1.png}
-    %     \caption{Simulation results}
-    %     \label{fig:SimulationResults}
-    % \end{figure}
-    
-     
-    \end{enumerate}
-    
-    
-    \item \textbf{Servo motor application}\\
-    % Servo motors run significantly faster than stepper motors, with speeds greater than 1500 rpm \cite{halicioglu2016mechanisms}. This enables servomotors to be used with gearboxes to deliver much higher torque at useful speeds. They also deliver more consistent torque across the speed range of the motor. Unlike stepper motors, they do not have holding torque. Closed-loop operation enables the controller/drive to command that the load remain at a specific position, however, and the motor will make continual adjustments to hold it there. Thus, servomotors can produce de facto holding torque\cite{halicioglu2016mechanisms}. The Servo motor rotates with a fixed step angle as low as 1 degree with or without the use of a driver. Furthermore, when powered, servomotors tend to move their shaft position to zero, a phenomenon known as hunting.
-    \par
-    \textbf{Design with servo motor}
-    \begin{enumerate}
-    \par
-    \item \textbf{Motor selection}
-    \par
-    An MG996R Servo motor shown in figure \ref{fig:servo_motor_assembly} was selected for this application. It is the motor that provided the torque required to turn the ball valve at an optimum price for the project's budget. 
-    \par
-    The motor specification as shown in table \ref{tab:MG996R_servo_specs}.
-    \begin{table}[H]
+        \includegraphics [height=.6\textheight] {Figures/de.jpg}
+        \caption{Mounting Rod}
+        \label{fig: 3D printed Mounting Rod}
+        \end{figure}
+
+    \end{itemize}
+\subsubsection{Material selection}
+\par
+All the components from the servo motor holder, the LA-T8 linear actuator holder, a diversion flap, links, mounting straps, an interface, and mounting rods were all made from Polylactic acid (PLA). PLA was used due to its ease of use and minimal warping issues. The diversion flap is made from polyvinyl chloride (PVC). Furthermore, the use of PLA and PVC served two main functions. The first was to eliminate the rusting of components that would have arisen with the use of metallic components. Secondly, was to cut down on the overall cost as it would not require secondary finishing processes to eliminate rusting.
+\subsubsection{Design Modifications}
+\begin{itemize}
+    \item Link
+\par
+The link that serves to connect the linear actuator to the diversion flap was changed from that in figure \ref{fig: Link 1} to that in figure \ref{fig: Link 2} with the main modification being increasing the overall thickness of the link.
+\begin{figure}[H]
+        \centering
+        \includegraphics [width=.8\textwidth] {Figures/RockerLink.jpg}
+        \caption{Link1}
+        \label{fig: Link 1}
+        \end{figure}
+The thickness of the link was increased from 3mm to 5mm. This was because the initial link was wabbling under loading conditions when the flow was at its maximum pressure.
+        
+        \begin{figure}[H]
+        \centering
+        \includegraphics {Figures/RockerLink2.JPG}
+        \caption{Link2}
+        \label{fig: Link 2}
+        \end{figure}
+\end{itemize}
+\subsubsection{Electrical and Electronics}
+\par
+The discharge flow control unit has two electrical components. One is the MG996R servo motor used to control the flow rate is small precise steps. The other component is the L8-T8 linear actuator used for flow diversion.
+\begin{itemize}
+    \item MG996R servo Motor
+\par
+The MG996R servo motor was initially selected for turning the ball valve in precise steps. The motor is shown in  Figure \ref{fig: 10Kg MG996R Servo Motor}
+  \begin{figure}[H]
+        \centering
+        \includegraphics [height=.3\textheight] {Figures/MG996R.jpg}
+        \caption{10Kg MG996R Servo Motor}
+        \label{fig: 10Kg MG996R Servo Motor}
+        \end{figure}
+The motor has the following features;
+\begin{table}[H]
     \centering
     \caption[MG996R Servo motor specifications]{MG996R Servo motor specifications \cite{mg996r}}
     \begin{tabular}{|l|l|}
@@ -193,817 +168,315 @@ Maximum torque & 4.8 Kg.cm \\ \hline
     \end{tabular}
     \label{tab:MG996R_servo_specs}
     \end{table}
-    \begin{figure}[H]
+\par
+From table \ref{tab:MG996R_servo_specs}, the motor's power requirement includes an operating voltage of +5V. This means that any voltage above 5V may be hazardous to the motor while anything below may not power the motor. The motor's electrical circuit connection is as shown in figure [TODO]. From figure [TODO] a 12V power supply was connected to step down the 240V to 12V. The 12V from the power supply was further stepped down by a buck converter to around 5V which was then fed into the motor via the power supply pin. The ground pin was grounded onto the STM32F407 microcontroller GND pin while the pulse with modulation(PWM) pin was connected to the pin[TODO] of the same microcontroller.
+\par
+There was however a change from the 10Kg MG996R servo motor to the 20Kg Metal Gear Digital Servo. This was because of a hinge inside the ball valve. The MG996R servo did not have enough torque to turn the valve past the hinge. Figure \ref{fig: 20Kg Metal Gear Digital Servo} shows the diagrammatic representation of the servo motor.
+\begin{figure}[H]
         \centering
-        \includegraphics[width=.25\textwidth, height=.25\textheight]{Figures/MG996R.jpg}
-        \caption[MG996R servo motor]{MG996R servo motor \cite{mg996r}}
-        \label{fig:servo_motor_assembly}
-    \end{figure}
-    The servo motor homes to $0^{0}$ on powering hence the mounting mechanism should accommodate for this. Besides, the home position of the servo motor should be equal to the closed position of the ball valve. Therefore, during mounting, the servo motor must be rotated to align its home position with the closed position of the ball valve. Based on the above, the following considerations were made.
-    % \par
-    % The mounting mechanism should therefore allow for this rotation. A cuboid cage could have been used to support the motor in place, but since the centre of mass of this motor is displaced from its line of axle rotation, rotating the cuboid could mean repositioning the support stands for the cuboid.
-    % \par
-    %  There were two options that could achieve this kind of rotation:
-     \begin{enumerate}
-         \item A  cuboid cage with slots. The cuboid cage could hold the motor while the at the same time the slots provide for manual realignment.
-         \par
-         \textbf{Designs with this approach}
-         \par
-         \begin{itemize}
-             \item \textbf{Servo motor cage}
-            \par
-            The cage shown in figure \ref{fig:servo_motor_cage} is screwed on to the motor straps. It just adds additional mounting points for the motor. 
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=\textwidth]{Figures/MG996RHolder.PNG}
-                \caption{Servo motor cage}
-                \label{fig:servo_motor_cage}
-            \end{figure}
-            \par
-            % \item \textbf{Mounting plate}
-            % \par
-            % Figure \ref{fig:servo_motor_mounting_plate} shows the mounting plate for the motor cage. The plate is like a ring with slots. The design allows for rotation without the need to reposition the supporting rods. 
-            % \par
-            % \begin{figure}[H]
-            %     \centering
-            %     \includegraphics[height=.7\textheight]{Figures/ServoMotorHolderMount.PNG}
-            %     \caption{Servo motor mounting plate}
-            %     \label{fig:servo_motor_mounting_plate}
-            % \end{figure}
-            \par
-            \item \textbf{The holder assembly}
-            \par
-            Figure \ref{fig:servo_motor_mounted_assembly} shows the servo motor cage with the servo motor mounted on the mounting plate. The servo motor assembly can be rotated and translated to reposition the line of rotation of the motor axle. 
-            \begin{figure}[H]
-                \centering
-                \includegraphics[height=.5\textheight, width=.6\textwidth]{Figures/MG996RServoMounted.PNG}
-                \caption{Servo motor mounted assembly}
-                \label{fig:servo_motor_mounted_assembly}
-            \end{figure}
-             This design can allow for both rotational and translational adjustments along the slots. However, it is complex and require a lot of fasteners.
-         \end{itemize}
-         \item A combination of spur gears to always translate the line of rotation of the motor axle to a fixed line of rotation no matter the orientation of the motor.
-         \clearpage
-         \textbf{Designs with the spur gears approach}
-         \par
-          \begin{itemize}
-              \item \textbf{Spur gears}
-              \par
-              Spur gear shown in Figure \ref{fig:spur_gear} translates the line of rotation by 5.75mm in any orientation of the servo to a fixed centre line.
-              \begin{figure}[H]
-                  \centering
-                  \includegraphics[height=.55\textheight]{Figures/SpurGear1.PNG}
-                  \caption{Spur gear}
-                  \label{fig:spur_gear}
-              \end{figure}
-              \par 
-              \item  \textbf{Servo motor-spur gear assembly}
-              \par
-              Figure \ref{fig:servo_motor_with_spur_gears} shows the spur gear translation system assembled with the servo motor.
-              \begin{figure}[H]
-                  \centering
-                  \includegraphics[height=.55\textheight]{Figures/ServoMotorWithSpurGears.PNG}
-                  \caption{Servo motor with spur gears}
-                  \label{fig:servo_motor_with_spur_gears}
-              \end{figure}
-              This design is quite simpler than the first approach. The design considerations are few and can produce even finer translations in the scale of the spur gear pitch($1 mm$). However, the main challenge with this design is the durability of spur gears made of PLA material since servo motors tend to have a high starting torque. This will almost necessitate the replacement of the gears after every two or three experiments.  
-          \end{itemize}
-     \end{enumerate}
-     \par
-     The cuboid cage was selected as it requires little maintenance as with the case of spur gears due to wear and tear.
-    %  Between the two mounting designs described, the first options had more merits than the second option. It might require more material to produce it but at least it is only for one time unlike with second option where the gears are to be replaced after every two or three times in operation.
-     \par 
-     \item \textbf{Mounting rod}
-     \par
-     Two of the rod shown in figure \ref{fig:mounting_rods} are used to support the mounted servo motor assembly on the ball valve. The design was such that it allowed for fasteners on both sides: at one end, to fasten the servo motor assembly after alignment and at the other end, to fasten the whole flow control unit on the main discharge pipe. The protrusion of its surface eliminates the need for another fastener. 
-      \begin{figure}[H]
-          \centering
-          \includegraphics[height=.55\textheight]{Figures/ServoMotorMountRods.PNG}
-          \caption{Mounting rods}
-          \label{fig:mounting_rods}
-      \end{figure}
-      \par
-    \item \textbf{Interface}
-    \par
-    The interface shown in Figure \ref{fig:interface2} is an improvement from the interface that was used with the stepper motor. This design is minimalistic and requires a lesser volume of material to produce. 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[height=.5\textheight]{Figures/Interface.PNG}
-        \caption{Interface}
-        \label{fig:interface2}
-    \end{figure}
-    \par
-    \item \textbf{Straps}
-    \par
-    Serrated straps shown in \ref{fig:two_rail_serrated_straps} are also an improvement on the straps used in the stepper motor approach. The serration provide more grip on the discharge pipe.The sizing and dimensioning was guided by the existing ball valve casing.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[height=.45\textheight]{Figures/twoRailStrapsTop.PNG}
-        \caption{Top strap}
-        \includegraphics[height=.45\textheight]{Figures/twoRailStrapsBottom.PNG}
-        \caption{Bottom strap}
-        \label{fig:two_rail_serrated_straps}
-    \end{figure}
-      
-    \par
-    \item \textbf{Servo motor discharge flow control assembly}
-    \par
-    The assembly of parts used in the servo motor approach is as shown in Figure \ref{fig:servo_motor_discharge flow control assembly}.
-     \begin{figure}[H]
-         \centering
-         \includegraphics[height=.55\textheight]{Figures/FlowControlSubUnitAssembly.PNG}
-         \caption{Servo motor discharge flow control assembly}
-         \label{fig:servo_motor_discharge flow control assembly}
-     \end{figure}
-      
-    %  \par
-    %  \item \textbf{Finite element analysis of the assembly}
-    %  \par
-    %  PLA material was assigned to each part of the structure. The maximum load torque of the servo motor($11kg.cm$) was then applied on the mounting plate of the motor. The results of the simulation were as shown in figure \ref{fig:servo_assembly_results}. From the results, the structure still holds to the maximum torque with minimal displacement.
-    %  \begin{figure}[H]
-    %      \centering
-    %      \includegraphics[width=\textwidth]{Figures/ServoHolderBallValveAssembly-Static-1-1-1.png}
-    %      \caption{Servo Assembly simulation results}
-    %      \label{fig:servo_assembly_results}
-    %  \end{figure}
-    \end{enumerate}
-\end{enumerate}
-
-From these two design approaches, the servo motor approach was selected.
-
-\subsubsection{Flow diversion sub-unit}
-The design of this unit was based on the following two considerations:
-\begin{enumerate}
-    \item A faster response time. It is the time it takes to divert the discharge flow into the main reservoir or the discharge collection tank. 
-    \item An actuator that can provide linear translation of not less than 30 mm. In fact the longer the better. This is measured from the design assembly. This ensures that the discharge is fully diverted into the collection tank or to the main reservoir. 
-\end{enumerate}
-
-Based on the above two considerations, the use Piezo-electric actuato and Electromagnetic Actuator were feasible options. 
+        \includegraphics [height=.3\textheight] {Figures/20kg servo.jpg}
+        \caption{20Kg Metal Gear Digital Servo}
+        \label{fig: 20Kg Metal Gear Digital Servo}
+        \end{figure}
+The motor has the following features;
 \begin{table}[H]
     \centering
-      \caption[Piezo-electric actuator versus Electromagnetic Actuator]{Comparison between Piezo-electric actuator and Electromagnetic Actuator \cite{xla3} \cite{la_t8}}
-    \begin{tabular}{|m{3cm}|m{5cm}|m{5cm}|}
-    \hline
-Parameters & Piezo-electric actuator & Electromagnetic Actuatorr \\ \hline 
-Displacements & Small mechanical displacements at high speed & Large mechanical displacements \\ \hline
-Precision&High precision positioning & Low precision positioning\\ \hline
-Force & Large generated force & Relatively large force generated\\ \hline
-    \end{tabular}
-\end{table}
-\begin{enumerate}
-    \item \textbf{Piezo-electric actuator}
-    \par
-      Xeryon Precision XLA-Series 3 piezo actuator shown in Figure \ref{fig:piezo_actuator} was selected since it satisfied all the design requirements required for this subunit.
-    \begin{figure}[H]
-        \centering
-        \includegraphics{Figures/Xeryon-XLA-3-1.png}
-        \caption[Xeryon-XLA Series 3 piezo actuator]{Xeryon-XLA Series 3 piezo actuator \cite{xla3}}
-        \label{fig:piezo_actuator}
-    \end{figure}
-    Its technical specifications are as shown in table \ref{tab:XLA_stuff}.
-    \begin{table}[H]
-    \centering
-      \caption[XLA series 3 piezo actuator specifications]{XLA series 3 piezo actuator specifications \cite{xla3}}
+    \caption[MG996R Servo motor specifications]{MG996R Servo motor specifications \cite{mg996r}}
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Property} & \textbf{Value} \\ \hline
-    Stroke Length & 45mm \\ \hline
-    Resolution & 312nm \\ \hline
-    Operating voltage & 20-48V \\ \hline
-    Control & Closed loop control with an external XD-A controller \\ \hline
-    Temperature & -30  to 70 \\ \hline
-    Holding\& Driving  force & 3N \\ \hline
-    Speed range & 2mm / s to 400mm / s \\ \hline
+    Operating Voltage & 4.8V-6.6AV \\ \hline
+    Current & 2.5A (6V) \\ \hline
+    Stall Torque & 18.5 kg/cm (at 4.8V) \\ \hline
+    Maximum Stall Torque & 20.5A kg/cm (6V) \\ \hline
+    Operating speed & 0.17 s/60° \\ \hline
+    Gear Type & Metal \\ \hline
+    Rotation & 0°-180° \\ \hline
+    Weight of motor & 60gm \\ \hline
     \end{tabular}
-    \label{tab:XLA_stuff}
+    \label{tab:MG996R_servo_specs}
     \end{table}
-    
-    
-    From the technical specifications in the table, it is evident that this actuator could be the best choice for this application. However, it requires an external proprietary controller for closed-loop control. Xeryon company products are also not available in public stores such as Amazon or Aliexpress.
-    
-    \item \textbf{Electromagnetic Actuator}
-    \par
-    Electromagnetic actuators work on the principle of electromagnetism where electrical energy is converted to a linear translational mechanical motion and vice versa.
-    \par
-     LA-T8 micro linear actuator shown in figure \ref{fig:la_t8_linear_actuator}  was selected for this application.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=.25\textwidth, height=.25\textheight]{Figures/LA-T8.jpg}
-        \caption[LA-T8 linear actuator]{LA-T8 linear actuator \cite{la_t8}}
-        \label{fig:la_t8_linear_actuator}
-    \end{figure}
-    % Its technical specifications are shown in table \ref{tab:la_t8_tab}.
-    \begin{table}[H]
-    \centering
-       \caption[LA-T8 Micro-linear actuator technical specifications]{LA-T8 Micro-linear actuator technical specifications \cite{la_t8}}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Property} & \textbf{Value} \\ \hline
-    Operating voltage & 12V DC \\ \hline
-    Stroke length & 100mm \\ \hline
-    Stroke speed & 150mm/s \\ \hline
-    Maximum load & 6.4N \\ \hline
-    \end{tabular}
-    
-    \label{tab:la_t8_tab}
-    \end{table}
-    The actuator satisfies optimally the requirements required for this application. However, unlike the piezo actuator, this device is available and for a cheaper price.
-\end{enumerate}
-Based on the above descriptions, the LA-T8 micro-linear actuator was selected for this application. This because of its local availability and the large mechanical displacements. Furthermore, it does not require an external proprietary controller for closed loop control hence reducing on the complexity of the circuit.
+    \item LA-T8 Electromagnet Actuator
 \par
-In order to hold this actuator in position the following designs were made:
-\begin{enumerate}
-    \item \textbf{Electromagnetic Actuator holder}
-    \par
-    This unit supports the actuator on the ball valve. It is required that this unit will withstand the weight of both the actuator and the diverter. It design is as shown in figure \ref{fig:electromagnetic_actuator}.
-    \begin{figure}[H]
+The LA-T8 electromagnet linear actuator is used in tandem with the diversion flap to control flow diversion. The forward and backward movement of the actuator coupled to the diversion flap via a link control the flow of the discharge either into the collection tank or into the main reservoir. The actuator is as shown in figure \ref{fig: LA-T8 Electromagnet Linear Actuator}
+\begin{figure}[H]
         \centering
-        \includegraphics[height=.5\textheight]{Figures/LA-T8Holder.PNG}
-        \caption{Electromagnetic actuator holder}
-        \label{fig:electromagnetic_actuator}
-    \end{figure}
-    The dimensions of this holder design were determined from the dimensions of the LA-T8 linear actuator plus a clearance of 0.5mm.
-    
-    \item \textbf{Diversion Flap}
-    \par
-    In order to divert the flow, a channel-like flap is to be used. The design of the flap is as shown in figure \ref{fig:diversion_flap}. 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[height=.5\textheight]{Figures/flap2.PNG}
-        \caption{Diversion flap}
-        \label{fig:diversion_flap}
-    \end{figure}
-    The design was such that it can tap the whole stream from the $1\frac{3}{4} inch$ main discharge pipe on the main machine. Its 150mm length is determined by the length of the gap between the discharge pipe and the collection unit.
-    \item \textbf{Flap support frame}
-    \par
-    This structure supports the diversion flap in place below the discharge pipe. This design was necessary since there is no convenient mounting point on the main machine that can allow the flap to be mounted without making changes to the main machine. It design is as shown in figure \ref{fig:flap_support_frame}.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[height=.7\textheight]{Figures/DiversionSupport.PNG}
-        \caption{Flap support frame}
-        \label{fig:flap_support_frame}
-    \end{figure}
-    This frame also provides an extension for supporting the kinematic chain that flexes the flap. 
-    \item \textbf{Link}
-    \par
-    The link serves to connect the linear actuator to the flap.  On one side it hinges onto the end of the 100mm actuator while on the other side it is attached to the flap. The linear movement of the actuator moves the flap to either to direct the discharge into the main reservoir or into the collection tank.
-    \begin{figure}[H]
-        \centering
-        \includegraphics [width=\textwidth]{Figures/RockerLink.PNG}
-        \caption{Link}
-        \label{fig:my_label}
-    \end{figure}
-    % \par
-    % To amplify the 100mm translation in order to flex the flap enough, a four-bar kinematic mechanism is used. The lengths of the links and the orientation of the four bars are determined by assuming a translation of 100mm at the output.
-    % \par
-    % Using the MechDesigner software, the kinematic chain was designed to provide the required motion for the flap. The CAM data from its simulation was exported automatically to a SolidWorks model of the fixed point of the part.
-    % \begin{enumerate}
-    %     \item \textbf{Crank}
-    %     \par
-    %     The input translation from the linear electromagnetic actuator. The design of this link is as shown in figure \ref{fig:crank}.
-    %     \begin{figure}[H]
-    %         \centering
-    %         \includegraphics{Figures/KLink3.PNG}
-    %         \caption{Crank}
-    %         \label{fig:crank}
-    %     \end{figure}
-    %     The connection between this link, the end of the actuators and the couple is a series of joints. The translation is in two axes: X and Y axes.
-    %     \item \textbf{Coupler}
-    %     \par
-    %     This link transfers the motion to the output link: the rocker. Its design is shown in Figure \ref{fig:coupler}.
-    %     \begin{figure}[H]
-    %         \centering
-    %         \includegraphics{Figures/KLink1.PNG}
-    %         \caption{Coupler}
-    %         \label{fig:coupler}
-    %     \end{figure}
-    %     The design is such that it hinges on an extension from the flap support frame on one end and connects to the rocker on the other end. The crank is connected at a distance from one end.
-    %     \item \textbf{Rocker}
-    %     \par
-    %     The rocker connects to the coupler on one end and to the flap on the other end. Its design is as shown in figure \ref{fig:rocker}.
-    %     \begin{figure}[H]
-    %         \centering
-    %         \includegraphics[height=.55\textheight]{Figures/KLink2.PNG}
-    %         \caption{Rocker}
-    %         \label{fig:rocker}
-    %     \end{figure}
-    % \end{enumerate}
-    % \item \textbf{Discharge flow control sub-unit}
-    % \par
-    % In the assembly shown in Figure \ref{fig:flow_diversion_assembly}, the flap support frame hinges on two rods: one of the servo mount rods and the other is one of the legs of the electromagnetic holder.
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics{Figures/DischargeFlowControlAssembly.PNG}
-    %     \caption{Flow Diversion assembly}
-    %     \label{fig:flow_diversion_assembly}
-    % \end{figure}
-    % \item \textbf{Finite element analysis of the electromagnetic actuator assembly}
-    % \par
-    % The finite element analysis of the assembly was performed to test how the electromagnetic diversion system is stable under a pressure force of $1N/m^{2}$ applied to the inside of the flap. PLA material was selected for all the parts in the assembly. The results of the simulation are shown in figure \ref{fig:e_simulation_results}.
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics[height=\textheight, width=\textwidth]{Figures/DischargeFlowDiverSionAssembly-Static 1-1-1.png}
-    %     \caption{Diversion assembly FEA results}
-    %     \label{fig:e_simulation_results}
-    % \end{figure}
-    % From the results in figure \ref{fig:e_simulation_results}, it is evident that the electromagnetic actuator assembly holds up to the amount of distributed pressure on the flap. 
-\end{enumerate}
-\subsubsection{Electrical}
-\begin{enumerate}
-    \item \textbf{MG996R Servo motor connection}
-    \par
-    \begin{itemize}
-        \item \textbf{Power requirements}
-        \par
-        From the technical specifications of the motor listed in table \ref{tab:MG996R_servo_specs}, this motor's operating voltage is 4.8V-7V, its driving current is between 500mA and 900mA, and its stall current is 2.5A(6V). However, most microcontrollers supply up to +5V DC voltage. This therefore requires a step-up circuitry or an external voltage supply to the  motor.
-        \item \textbf{Connection}
-        \par
-        To connect an external supply requires a circuit shown in figure \ref{fig:servo_connection}.
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=\textwidth]{Figures/ServoConnection.png}
-            \caption{Servo Connection}
-            \label{fig:servo_connection}
+        \includegraphics [height=.3\textheight] {Figures/LA-T8.jpg}
+        \caption{LA-T8 Electromagnet Linear Actuator}
+        \label{fig: LA-T8 Electromagnet Linear Actuator}
         \end{figure}
-        A 6V DC external supply is connected to the drain terminal of a Power MOSFET. This is activated by an NPN BJT transistor using the voltage supplied by the microcontroller.
-    \end{itemize}
-    
-    \item \textbf{P16-S Electromagnetic Actuator connection}
-    \par
-    \begin{itemize}
-        \item \textbf{Power requirement}
-        \par
-        The power requirements for this actuator are 12V DC supply and 2A current as listed in table \ref{tab:la_t8_tab}. These two power requirements cannot be satisfied by just a micro-controller; an external source is necessary.
-        \begin{table}[H]
+\par
+The actuators technical specifications include the following
+\begin{table}[H]
     \centering
-       \caption[LA-T8 Micro-linear actuator technical specifications]{LA-T8 Micro-linear actuator technical specifications \cite{la_t8}}
+    \caption[LA-T8 Micro-linear Actuator technical specifications]{LA-T8 Micro-linear Actuator technical specifications}
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Property} & \textbf{Value} \\ \hline
-    Operating voltage & 12V DC \\ \hline
+    Operating Voltage & 6 or 12V \\ \hline
     Stroke length & 100mm \\ \hline
     Stroke speed & 150mm/s \\ \hline
-    Maximum load & 6.4N \\ \hline
+    Maximum Load & 6.4N \\ \hline
     \end{tabular}
+    \label{tab:LA-T8 Micro-linear Actuator technical specifications]}
     \end{table}
-        \item \textbf{Connection}
-        \par
-        This two power requirement can be satisfied using a combination of a MOSFET power IRF520 and a D1 flyback diode as shown in Figure \ref{fig:electromagnet_connection}.
-        \begin{figure}[H]
-            \centering
-            \includegraphics{Figures/ElectromagnetConnection.png}
-            \caption{Electromagnetic Actuator circuit}
-            \label{fig:electromagnet_connection}
-        \end{figure}
-        This is available in a module shown in figure \ref{fig:irf520_module}.
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.25\textwidth,height=.25\textheight]{Figures/IRF520Module.jpg}
-            \caption[IRF520 Module]{IRF520 Module \cite{irf520}}
-            \label{fig:irf520_module}
-        \end{figure}
-    \end{itemize}
-\end{enumerate}
-\subsubsection{Software and control}
+\par
+The linear actuator is connected to two relays controlled by the STM32f407 microcontroller to control the forward and backward movement (switching action). The relays are powered directly from the 12V power circuit. Figure [TODO] shows its electrical circuit connection.
+\end{itemize}
+        
 
+
+
+
+
+
+
+\subsection{Discharge handling unit}
+
+This unit consists of the following sub-units:
 \begin{enumerate}
-    \item \textbf{MG996R Servo motor control}
-    \par
-    \begin{itemize}
-        \item \textbf{Requirements}
-        \par
-        This motor is required to drive the ball valve in steps in a $90^{0}$ turn, the angle covered to close and open the ball valve. However, the motor can turn $120^{0}$. Therefore, the $90^{0}$ turn can be achieved by Pulse Width Modulation. 
-        \item \textbf{Control}
-        \par
-        From the motor's datasheet, the period of the motor's control signal is 50Hz(20ms). This is checked against the clock frequency of the microcontroller and used to determine the prescaler value for the timer register.
-        \par
-        % For example:
-        % \begin{align*}
-        %     \text{Consider a micro-controller with clock frequency:} 84MHz \\
-        %     Timer\_Frequency = Period \times PWM\_Frequency\\
-        %     \therefore = 20000 \times 50 Hz  = 1MHz\\
-        %     Pre-scaler = \frac{Clock\_frequency}{Timer\_frequency}\\
-        %     \therefore = \frac{84}{1} = 84
-        % \end{align*}
-        % The angle turned by the motor is proportional to the Logic HIGH duty. Therefore, by writing a time value for $90^{0}$ full turn in the timer register, the turn can be achieved. Smaller turns can be achieved by writing corresponding time values to the timer register.
-    \end{itemize}
-    \item \textbf{LA-T8 electromagnetic Actuator control}
-    \par
-    \begin{itemize}
-        \item \textbf{Requirements}
-        \par
-        In order to divert the flow, this actuator is required to provide a linear stroke and remain in position for a set amount of time. When the time elapse, it is required to linearly retract in order to restore the flow. 
-        \item \textbf{Control}
-        \par
-        This actuator provides a full length stroke in;
-        \begin{align*}
-            \text{Full length of a stroke: } = 100mm\\
-            Stroke\_speed = 150mm/s\\
-            \therefore \text{Time taken for a full length stroke is} \frac{10}{15}^{th}  \text{of a second.}
-        \end{align*}
-        This is achieved when it is powered. The terminals are switched in order to retract it.
-        \par
-        Shorter strokes can be achieved by turning on the actuator for a time less than $\frac{10}{15}$ \textit{th} seconds.
-    \end{itemize}
-\end{enumerate}
-Controlling these two electronics requires an RTOS platform. There are many RTOS platforms but Zephyr and Mbed platforms are preferred because of their relatively large support with extensive APIs. 
-\clearpage
-\subsection{Discharge Handling Unit}
-This unit consists of the following subunits:
-\begin{enumerate}
-    \item Discharge collection tank sub-unit.
-    \item Outlet valve sub-unit.
-    \item Weight measurement sub-unit.
-    \item Temperature measurement sub-unit.
+    \item  A discharge collection tank with an outlet valve.
+    \item  A weight measurement system.
+    \item A temperature measurement system.
 \end{enumerate}
 
-\subsubsection{Discharge collection tank sub-unit}
+The discharge tank holds the collected discharge temporarily for weight and temperature measurement. It is emptied through an outlet valve.
+
+
+\subsubsection{Discharge collection tank with an outlet valve}
 \begin{itemize}
-\item \textbf{Collection tank}
-\par
-This is used to temporarily collect the discharge from the pipeline during each step of an experiment, after which it is released to the main reservoir through an outlet valve. The weight and temperature of the discharge are also taken in this tank. 
-\par
-The following design considerations were made when selecting a tank for this application.
-\begin{enumerate}
-    \item Shape of the tank 
-    \par
-    The design of this tank should be such that the tank discharges in the least time possible with no remnants. Therefore, the shape of the tank was put into much consideration such that it influences/motivates the discharge. The following shapes were taken into consideration.
-    \par
-    \begin{itemize}
-        \item \textbf{Cuboid tank}
-        \par
-    The design of the tank is shown in Figure \ref{fig:cuboid_discharge_container}.
-    \begin{figure}[H]
+    \item \textbf{Design considerations}
+        \begin{enumerate}
+            \item The shape of the tank should be such that it induces the most discharge within the shortest time possible.
+            \item The tank should also be made of a material resistant to rust since it will be collecting chlorinated water.
+            \item The tank should also collect not less than 20 litres. This value is obtained from previous experiments on the rig.
+        \end{enumerate}
+        From the above considerations, a horizontal cylindrical tank made of mild steel sheet was designed with dimensions shown in figure \ref{fig:horizontal_cylindrical_tank}. 
+        \begin{figure}[H]
         \centering
-        \includegraphics[height=.4\textheight]{Figures/DischargeContainer.PNG}
-        \caption{Cuboid discharge container}
-        \label{fig:cuboid_discharge_container}
-    \end{figure}
-    This tank satisfies the requirements for this application. However, a small volume of discharge will tend to remain in the tank when the tank is emptied.
-        \item  \textbf{Horizontal Cylindrical tank}
-    \end{itemize}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[height=.25\textheight]{Figures/tank.PNG}
+        \includegraphics{Figures/tank.jpg}
         \caption{Horizontal Cylindrical tank}
         \label{fig:horizontal_cylindrical_tank}
-    \end{figure}
-    When emptying this tank, the tank motivates the flow out of the discharge due to the concentration of the pressure of the discharge on a line at the bottom of the container determined by a static simulation.
-    \par
-    The horizontal cylindrical tank was selected for this application.
-    \item Material of the tank
-    \par
-   The collection tank will hold the discharge from the pipeline. It was key to ensure that the tank was corrosion resistant to avoid issues with rust. Taking the above into consideration, stainless steel and mild steel were considered to be used in the fabrication of the tank. There comparisons are discussed below.
-   \begin{table}[H]
-    \centering
-      \caption[Stainless Steel Versus Mild Steel]{Comparison between Stainless Steel and Mild Steel}
-    \begin{tabular}{|m{3cm}|m{5cm}|m{5cm}|}
-    \hline
-Parameters & Stainless Steel &  Mild Steel \\ \hline 
-Corrosion Resistant &  Much higher corrosion resistance &  Lower corrosion resistance (Require further processing such as galvanising in order to give it a protective surface) \\ \hline
-Fabrication & Much more impact resistant compared to mild steel  & Much more malleable compared to stainless and so is used a lot in general fabrication.\\ \hline
-Cost & Expensive & Cheaper\\ \hline
-    \end{tabular}
-    \end{table}
- \par
- Mild steel was selected to be used in the fabrication of the collection tank due to malleability hence ease of fabrication and cost. However, secondary operations in this case painting will be done to prevent corrosion.
- 
-    \item Volume of the tank
-    \par
-    The volume of the tank tank was such that it can hold a stream from the $1 \frac{3}{4} inch$ main discharge pipe that flows for approximately 30 seconds when the valve is fully opened. This was around $0.01m^{3}$. Therefore, the dimensions of the tank were such that it produced a volume of this value.
-\end{enumerate}
-% Based on the above considerations, two options were technically feasible in terms of the available means for fabrication:
-% \begin{enumerate}
-%     \item \textbf{Cuboid tank}
-%     \par
-%     The design of the tank is shown in Figure \ref{fig:cuboid_discharge_container}.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[height=.4\textheight]{Figures/DischargeContainer.PNG}
-%         \caption{Cuboid discharge container}
-%         \label{fig:cuboid_discharge_container}
-%     \end{figure}
-%     This tank satisfies the requirements for this application. However, a small volume of discharge will tend to remain in the tank when the tank is emptied.
-%     \item \textbf{Horizontal Cylindrical tank}
-%     \par
-%     The design of this tank is shown in Figure \ref{fig:horizontal_cylindrical_tank}.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics[height=.25\textheight]{Figures/tank.PNG}
-%         \caption{Horizontal Cylindrical tank}
-%         \label{fig:horizontal_cylindrical_tank}
-%     \end{figure}
-%     When emptying this tank, the tank motivates the flow out of the discharge due to the concentration of the pressure of the discharge on a line at the bottom of the container determined by a static simulation.
-%     % \begin{figure}[H]
-%     %     \centering
-%     %     \includegraphics[width=\textwidth, height=.4\textheight]{Figures/tank-Static-1-1-1.png}
-%     %     \caption{Tank simulation results}
-%     %     \label{fig:tank_simulation_results}
-%     % \end{figure}
-% \end{enumerate}
+        \end{figure}
+        A support structure is necessary to support the tank. The design of the support frame is shown in figure \ref{fig:cylindrical_tank_support_frame} with its dimensions.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[height=.35\textheight]{Figures/tankHolder.jpg}
+            \caption{Cylindrical tank support frame}
+            \label{fig:cylindrical_tank_support_frame}
+        \end{figure}
+        \item \textbf{Fabrication}\\
+        The fabrication of the tank started with the acquisition of $2x2$ meters of mild steel sheet. The dimensions of the sheet were obtained from the flattened sheet drawing of the tank.
+        The sheet was then cut and rolled. The rolled sheets were welded together to produce the tank.
+        \par
+        The tank was positioned in the center of the support frame, and welded as shown in figure \ref{fig:fabricated tank}. The assembly was painted to prevent it from rusting.
+        \par
+        A $1\frac{1}{2} inch$ ball valve was also welded to the bottom of the tank. This size of the valve was selected such that the tank could be emptied in the least time possible. 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.4\textwidth]{Figures/tank_fabricated.jpg}
+            \caption{Fabricated tank}
+            \label{fig:fabricated tank}
+        \end{figure}
+\end{itemize}  
 
-
-\par
-\item \textbf{Tank support frame}
-\par
-In order to support the tank in an upright position on a flat surface a support frame shown in figure \ref{fig:cylindrical_tank_support_frame}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=.55\textheight]{Figures/tankHolder.PNG}
-    \caption{Cylindrical tank support frame}
-    \label{fig:cylindrical_tank_support_frame}
-\end{figure}
-
-The dimensions of the frame were such that it provides a clearance of 1mm for the tank.
-
-\par
-\item \textbf{Tank assembly}
-\par
-The assembly of the tank and its support frame are as shown in figure \ref{fig:collection_tank}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=.45\textheight]{Figures/CollectionTank.PNG}
-    \caption{Collection tank}
-    \label{fig:collection_tank}
-\end{figure}
-\par
-\item \textbf{Position}
-\par
-The positioning of the tank was also a critical aspect of the design. Ideally, the collection tank was to be either positioned directly just below the flow diversion unit or at the periphery of the main reservoir. Positioning the collection tank directly below the flow diversion unit mitigates the need for additional components such as diverting pipes. This simply implies that the collection tank would just be provided with a holding mechanism for support upon which it is fitted with a solenoid outlet valve directly into the reservoir. On the contrary, positioning the collection tank on the periphery introduces the need for additional components. This includes a pump system to pump the discharge back into the reservoir, which adds to the overall cost of the project. Positioning the collection tank below the diversion unit was the feasible option due to cost considerations.
-\end{itemize}
-
-\subsubsection{Outlet valve sub-unit}
-It is used to empty the tank into the main reservoir. The main consideration was the response time(time taken to close and open the valve) in the selection of a valve suitable for this application. The following options were feasible:
+\subsubsection{A weight measurement sub-unit}
+\begin{itemize}
+\item \textbf{Design and design considerations}\\
+The weight of the discharge is measured in every step of the experiment. The selection of the weight measurement sub-unit was based on the following design consideration:
 \begin{enumerate}
-    \item \textbf{An electrically Controlled Butterfly valve}
-    \par
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.2\textwidth, height=.2\textheight]{Figures/butterflyValve.png}
-        \caption[Butterfly valve]{Butterfly valve \cite{butterfly}}
-        \label{fig:butterfly_valve}
-    \end{figure}
-    The operating voltage of the valve shown in figure \ref{fig:butterfly_valve} is in the range 12V DC - 230V AC. Therefore, its response time can be reduced by increasing the voltage supply to the solenoid.
-    \item \textbf{A solenoid gate valve(with a plunger)}
-    \par
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=.2\textwidth, height=.2\textheight]{Figures/solenoidValve.jpg}
-        \caption[Solenoid valve]{Solenoid valve \cite{solenoid}}
-        \label{fig:solenoid_valve}
-    \end{figure}
-    The $\frac{3}{4} inch$ solenoid valve shown in figure \ref{fig:solenoid_valve} uses a plunger with a cork for control the flow. How fast the plunger closes the aperture depends on the voltage supplied to the solenoid. The operating voltage of this type of valve is 12V DC.
+    \item The weight in the tank is distributed to the four vertices of the support frame. This therefore necessitates four measuring units, each with a capacity not less than 20 kg.
+    \item The resolution of the measuring device should be up to $\frac{1}{100}$ of a kg. So that even the tiniest change of the weight can be measured.
 \end{enumerate}
+Based on the above considerations, four load cells each with a range of 50 kg, one of which is shown in figure \ref{fig:load_cell_disc} were selected. They are distributed to the vertices of the tank as shown in the  design in figure \ref{fig:collection_tank_with_load_cells}.
 
-The solenoid gate valve(with a plunger) was selected for this application mainly because the butterfly valve is expensive relative to the budget set for the project.
-
-\subsubsection{Weight measurement sub-unit}
-The weight of the collected discharge is measured in every step of the experiment. Weight measurement is cumulative. In the event of an error, the error is not propagated in the cumulative approach unlike in the weight-per-step approach. Therefore, the cumulative approach was selected for this application.
-\par
-The selection of the weight measurement device was guided by the following considerations:
-\begin{enumerate}
-    \item The maximum weight that can be precisely measured by the unit. The maximum weight of the structure to be measured is determined as follows:\\
-    \begin{align*}
-    \text{Assume the maximum volume of the water collected} = 0.02m^{3}.\\
-    Mass(M) = Density(\rho) \times Volume(V)\\
-    \text{Water density} (\rho_{\textit{water}}) = 1000kg/m^{3}\\
-    \therefore  \text{Mass of water} (M_{\textit{water}}) = 20 Kg
-    \end{align*}
-    The measuring device should therefore handle weights of more than 20Kg.
-    \item The resolution of the device.
-\end{enumerate}
-On the basis of the above considerations, the following options were considered:
-\begin{enumerate}
-    \item Weight measurement by ultrasonic waves
-    \par
-    Ultrasonic waves can be used to determine the depth of discharge in the tank. The time taken to send and receive the echo is multiplied by the speed of sound to obtain the depth of the empty side of the container. However, to use this approach requires calibration of several parameters, some of which are to be done in real time. A mathematical model would be preferable for this calibrations. 
-    % This approach is rudimentary and very much flawed as there are many considerations in order to obtain almost accurate results. Some of the considerations include:
-    % \begin{enumerate}
-    %     \item The angle of reflexion $\delta$ is shown in figure \ref{fig:ultrasonic sensor measurement model}.
-    %     \begin{figure}[H]
-    %         \centering
-    %         \includegraphics{Figures/angleOfReflection-1.png}
-    %         \caption[Ultrasonic sensor measurement model]{Ultrasonic sensor measurement model \cite{chang1996ultrasonic}}
-    %         \label{fig:ultrasonic sensor measurement model}
-    %     \end{figure}
-    %     \item The Gaussian noise to environmental changes. There is an almost 3.5\% increase in noise for a temperature difference of only $20^{0}$ \cite{chang1996ultrasonic}.
-    % \end{enumerate}
-   
-    \item Load cells
-    % \par
-    % These are transducers capable of converting pressure to an electrical signal specifically a strain in its material structure is converted to electrical resistance.
-    \par
-    The loading cell disc shown in Figure \ref{fig:load_cell_disc} with a load force range of 0-50Kg was selected for application due to its weight range.
-    \begin{figure}[H]
+   \begin{figure}[H]
         \centering
         \includegraphics[width=.25\textwidth, height=.25\textheight]{Figures/50KgLoadCell.jpg}
         \caption[Strain-type load cells]{Strain-type load cells \cite{loadcell}}
         \label{fig:load_cell_disc}
     \end{figure}
-\end{enumerate}
- Four load cells  will be strategically positioned at the edges of the support frame of the discharge collection tank, as shown in Figure \ref{fig:collection_tank_with_load_cells}.
-\begin{figure}[H]
+    \begin{figure}[H]
     \centering
-    \includegraphics[height=.45\textheight]{Figures/CollectionTankWithTheLoadCells.PNG}
+    \includegraphics[height=.45\textheight]{Figures/CollectionTankWithTheLoadCells.jpg}
     \caption{Collection tank with load cells}
     \label{fig:collection_tank_with_load_cells}
 \end{figure}
 
-\subsubsection{Temperature measurement sub-unit}
- The temperature of the discharge is measure in every step to ensure consistency of the data collected. Since this measurement is taken within roughly 10 seconds before the outlet valve is opened, a measuring device whose sensitivity is enough to establish reliable results within that time is required for this application. An immersible DS18B20 temperature probe shown in figure \ref{fig:ds18b20_temperature} was selected. Its technical specifications are shown in table \ref{tab:ds18b20 temperature probe}.
+A support frame is necessary to support the tank and the load cells on the fluids rig right under the discharge flow control unit. The selected design of the support is shown in figure \ref{fig:tank_support_frame}. 
 \begin{figure}[H]
+    \centering
+    \includegraphics[height=.4\textheight]{Figures/tankSupport.JPG}
+    \caption{Tank support frame}
+    \label{fig:tank_support_frame}
+\end{figure}
+
+ For the selected load cells to perform efficiently, a pocket has to be made on the supporting surface to allow for the deflection of its resistive unit. Rough metallic support surface, could also provide unstable results. Therefore, a hard rubber cushion with a pocket shown in figure \ref{fig:cushion_rubber}  was designed and cut.
+         \begin{figure}[H]
+             \centering
+             \includegraphics[width=.45\textwidth]{Figures/Rubber.JPG}
+             \caption{Cushion/suspension rubber}
+             \label{fig:cushion_rubber}
+         \end{figure}
+The rubbers are mounted between the load cells and the tank support frame as shown in figure \ref{fig:collection tank mounted}.
+\begin{figure}[H]
+    \centering
+    \includegraphics{Figures/CollectiontankWithSupports.JPG}
+    \caption{Mounted collection tank}
+    \label{fig:collection tank mounted}
+\end{figure}
+\item \textbf{Mechanical Fabrication}\\
+         The support frame was fabricated with $40x40 mm$ angle lines. The angle lines were cut into the sizes from the design and welded together. It was later painted to prevent it from rusting. The extension flaps on the side were slit and hammered to flatten them. This provided support for the load cells.
+         \par
+         A $400x400 mm$ plexi-glass piece was also cut and fitted 100 mm from the edge of the support frame in order to minimize splashes of water during an experiment.
+         \par
+         The assembly of these parts is shown figure \ref{fig:discharge handling unit}.
+         \begin{figure}[H]
+             \centering
+             \includegraphics[width=.8\textwidth]{Figures/dsch_fabricated.jpeg}
+             \caption{Fabricated discharge handling unit}
+             \label{fig:discharge handling unit}
+         \end{figure}
+\item \textbf{Electrical and electronics assembly}\\
+The four load cells are connected in a Wheatstone bridge as shown in figure \ref{fig:load_cell_connection}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Figures/LoadCellConnection.jpg}
+    \caption{Load cell connection}
+    \label{fig:load_cell_connection}
+\end{figure}
+The output of the load cells is amplified using an HX711 load amplifier which connects to an SPI interface of a microcontroller. The amplifier operates on a 5V DC supply which can be provided by the microcontroller.
+
+\end{itemize}
+
+\subsubsection{Temperature measurement sub-unit}
+ The temperature of the discharge is measured at every step to ensure the consistency of the data collected. Since this measurement is taken within roughly 10 seconds before the outlet valve is opened, a measuring device whose sensitivity is enough to establish reliable results within that time is required for this application. An immersible DS18B20 temperature probe shown in figure \ref{fig:ds18b20_temperature} was selected. 
+ \begin{figure}[H]
     \centering
     \includegraphics[width=.28\textwidth, height=.28\textheight]{Figures/ds18b20_temperature_probe.jpg}
     \caption[DS18B20 temperature probe]{DS18B20 temperature probe \cite{ds18b20}}
     \label{fig:ds18b20_temperature}
 \end{figure}
-\begin{table}[H]
-\centering
-\caption[DS18B20 temperature range specifications]{DS18B20 temperature range specifications \cite{ds18b20}}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Property} & \textbf{Value} \\ \hline
-Operating voltage & 3.3V  to 5V DC \\ \hline
-Operating temperature range & -55°C to +125°C (-67°F to +257°F) \\ \hline
-Accuracy over the range of -10°C to +85°C: & ±0.5°C. \\ \hline
-Water proof & True \\ \hline
-\end{tabular}
-\label{tab:ds18b20 temperature probe}
-\end{table}
 
-\subsubsection{Electrical}
+ This probe can operate with either 5V or 3.3V supply depending on the mode of connection. It has a parasite mode, where it can draw current from a digital pin instead of a dedicated supply. 
+ 
+\subsection{Interface and control unit}
+
+This unit consists of two sub-units:
 \begin{enumerate}
-    \item \textbf{Solenoid valve connection}
-    \par
-    \begin{itemize}
-        \item \textbf{Power requirements}
-        \par
-        The selected solenoid valve operates on 12V DC voltage. This requires an external supply and circuit to activate the supply when needed.
-        \item \textbf{Circuit}
-        \par
-        An IRF520 N-Ch power module described previously can be used to power this device with a 12V supply.
-    \end{itemize}
-    \item \textbf{Strain type load cell connection}
-    \par
-    \begin{itemize}
-        \item \textbf{Power requirements}
-        \par
-        The four load cells used in this application are connected through a load combinator module whose operating voltage is between 2.7V to 5V.
-        \item \textbf{Circuit}
-        \par
-        The load cells are connected in a Wheat-stone bridge through a load combinator module as shown in figure \ref{fig:load_cell_circuit}.
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=.45\textwidth, height=.65\textheight]{Figures/load_cell_combined.jpg}
-            \caption[Load cells circuit]{Load cells circuit \cite{loadcell}}
-            \label{fig:load_cell_circuit}
-        \end{figure}
-    \end{itemize}
-    \item \textbf{DS18B20 temperature probe connection}
-    \par
-    \begin{itemize}
-        \item \textbf{Power requirements}
-        \par
-        This sensor's operating voltage is between 3.0V and 5V. Therefore Vcc line can be connected directly to the 5V pin of the micro-controller.
-    \end{itemize}
+    \item Interface and control sub-unit - which contains the graphical control of the system
+    \item Software and controller sub-unit  - which contains the selected microcontroller for this application and firmware specifications for the application developed for the microcontroller.
 \end{enumerate}
-\subsubsection{Software and control}
+
+\subsubsection{Interface and control sub-unit}
+It provides a means of interaction between the system and the user. Ideally, this sub-unit enables the user to input instructions and control the processes in this system. The status and results of processes in this system are also displayed in the interface. The choice of an interface depended on the following factors:
 \begin{itemize}
-    \item \textbf{Calibration}
-    \par
-    The load cells and the temperature sensor are calibrated once the whole system is assembled.
-   
-    \item \textbf{Mean}
-    \par
-     The weight and temperature of the discharge is measured over a period of time before the average value of a measurement is determined. 
-\end{itemize}
-
-\subsection{Interface and Control Unit}
-This unit consists of two subunits:
-\begin{enumerate}
-    \item Interface sub-unit
-    \item Controller sub-unit
-\end{enumerate}
-
-\subsubsection{Interface sub-unit}
-It provides for a means of interaction between the system and the user. Ideally, the sub unit enables the user to input instructions and control the processes in this system. The status and results of processes in this system are also displayed in the interface. The choice of an interface depended on the following factors:
-\begin{enumerate}
+    \item \textbf{Interface choice considerations}\\
+    \begin{enumerate}
     \item Size \\
-    This is the size of the operable part of the interface. In case of touch interface, a minimum of a 320x240 LCD is required to enable at least the minimum operability of GUI items, and a 20x4 LCD for any other choice.
+    This is the size of the operable part of the interface. In the case of a touch interface, a minimum of a 320x240 LCD is required to enable at least the minimum operability of GUI items, and a 20x4 LCD for any other choice.
     \item Ergonomics \\
     The user should be able to spend the least possible time feeding input and reading the results with relative ease. 
     \item Aesthetics \\
       The interface will be mostly used by students with limited exposure hence good look might be motivating. However, this should not compromise the design. It should be able to be introduced and improved with minimum modifications to the hardware in the system. 
-\end{enumerate}
-Based on the above considerations, the following options were considered:
-\begin{enumerate}
-    \item LCD With keypad 
-    \par
-    % This type of interface is shown in figure \ref{fig:lcd_with keypad}. 
-    One can navigate, read and provide input where it is required on the LCD display using the keypad.
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics[width=.25\textwidth,height=.25\textheight]{Figures/controlInterface.png}
-    %     \caption[LCD with keypad]{LCD with keypad \cite{lcd_with_keypad}}
-    %     \label{fig:lcd_with keypad}
-    % \end{figure}
-    \item LCD with touch 
-    \par
-    % This type of interface is shown in figure \ref{fig:lcd_with_touch}. 
-    One can navigate such interface easily by touching or use a virtual keyboard to provide input. 
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics[width=0.55\textwidth,height=.35\textheight]{Figures/lcdWithTouch.png}
-    %     \caption[LCD with touch]{LCD with touch \cite{lcd_with_touch}}
-    %     \label{fig:lcd_with_touch}
-    % \end{figure}
-    %  This type of LCD communicates with the microcontroller through an 8-bit parallel interface and four ports(32 pins). This can sometimes be replaced by an HDMI interface depending on the size of the screen.
-    % \item LCD with Knob
-    \par
-    % This interface shown in Figure \ref{fig:lcd_with_knobs} is controlled by a knob. 
-    Navigation is achieved by turning the knob. 
-    % To provide an input in a field, the knob can be pressed and turned. This is common in low-budget 3D printers.
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics[width=0.25\textwidth,height=.25\textheight]{Figures/lcdwithknob.png}
-    %     \caption[Lcd with knob]{LCD with knob \cite{noauthor_prusa_nodate}}
-    %     \label{fig:lcd_with_knobs}
-    % \end{figure}
-\end{enumerate}
+    \end{enumerate}
+     A 320x240 touch LCD interface was selected for this application. This choice satisfies all the requirements required of an interface for this application. In addition, one can also add control or  improve the aesthetics of the design by simply tweaking the GUI software without major hardware changes.
 
- A touch LCD interface was selected for this application. This choice satisfies all the requirements required of an interface for this application. In addition, one can also improve the aesthetics of the design by simply tweaking the GUI software without major hardware changes.
-%  \par
-%  Touch LCDs can be very expensive relative to our budget and challenging to programme. Two variations of touch LCDs are available for our application: those with a 32-pin interface and those with an HDMI interface. Those with HDMI interface are available in sizes larger than 7 inches and are priced at not less than \$90. Those with 32-pin interface are available to sizes as small as 1.77 inches and are relatively cheaper.    
-\begin{itemize}
-    \item \textbf{LCD GUI design}
-    \par
-    A preliminary GUI is shown in Figure \ref{fig:GUI_interface}.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=.32\textwidth, height=.24\textheight]{Figures/interfacedesign.png}
-        \caption{GUI interface}
-        \label{fig:GUI_interface}
-    \end{figure}
-    The design is in a 320x240 frame, the size of the selected LCD. The steps sizes and time interval's inputs can be provided by sliding on the sliding bar upon which the value is displayed beside the sliding bar. The step number, weight and temperature of that specific step are also displayed once a step is complete. Finally, in case of any errors in the system, an error message is displayed at the bottom of the frame.
+     \item \textbf{Interface Design}\\
+     The interface of this application was designed with the selected electronics in mind. It included three screens:
+     \begin{enumerate}
+         \item \textbf{Home screen} - included all manual controls for the application.
+         \item \textbf{Screen 1} - included all automated controls for carrying out a coefficient of discharge experiment.
+         \item \textbf{Screen 2} - included controls for establishing wired control of the application from a remote personal computer(PC).
+     \end{enumerate}
+     The mock designs for this application were made in Figma online designer. The designs were then implemented using LVGL, a lightweight graphics library for embedded systems. The library is designed to run only when deployed to embedded controllers. However, a simulator can be developed on a PC for testing.
+     Figure \ref{fig:home_screen} - \ref{fig:screen_2} shows the developed interfaces for this application.
+
+     \begin{figure}[H]
+         \centering
+         \includegraphics[width=.48\textwidth, height=.32\textheight]{Figures/home_screen.png}
+         \caption{Home screen}
+         \label{fig:home_screen}
+     \end{figure}
+     \begin{figure}[H]
+         \centering
+         \includegraphics[width=.48\textwidth, height=.32\textheight]{Figures/screen1.png}
+         \caption{Screen 1}
+         \label{fig:screen_1}
+     \end{figure}
+     \begin{figure}[H]
+         \centering
+         \includegraphics[width=.48\textwidth, height=.32\textheight]{Figures/screen2.png}
+         \caption{Screen 2}
+         \label{fig:screen_2}
+     \end{figure}
+     \begin{enumerate}
+         \item \textbf{Home screen}\\
+         The arc dial is provided for operating the valve through a servo motor in steps of $1^0$. a toggle switch is used to operate the linear actuator which in turn operates a flap that diverts a flow from the stream.
+         \par
+         The temperature and weight readings are continuously updated in the temperature and weight labels respectively.
+         \par 
+          Rebase buttons are used to reset each operation.
+          \item \textbf{Screen 1}\\
+          Screen 1 provides horizontal sliders for setting the number of steps and the time interval for a coefficient of discharge experiment. Clicking the start button, the value of the time and step sliders are used to compute the distribution of the operating points of the servo and the linear actuator in order to complete the experiment. 
+          \par
+          The reset button resets the experiment and the controls. 
+          \item \textbf{Screen 2}\\
+          Screen 2 provides two text fields for an IP address and the port of the connected PC. These inputs are keyed in using a virtual keyboard. The connect button initiates the business logic of establishing a connection and communicating with the PC. The virtual keyboard auto-hides. This exposes a whole text field behind where the log for the transaction between the PC and the application is displayed.
+     \end{enumerate}
+    \item \textbf{Application logic}\\
+     The control flow of the system is shown in figure \ref{fig:control_flow}. This flow is triggered only when performing coefficient of discharge experiments. It starts when a user clicks the start button, the application then computes the control points for the valve and the diverter based on the values set for the time interval and the number of steps for the experiment. The system then turns the valve to the first control point and simultaneously initiates a timer and discharge collection. The elapsed time is continuously monitored and a different action is only taken when it elapses otherwise discharge collection continues. When the time elapses, the system stops the discharge collection and starts the temperature and weight measurement of the collected discharge. The results of the measurements are continuously updated on the graphical display. 
+     \begin{figure}[H]
+         \centering
+         \includegraphics{Figures/Control flow..jpeg}
+         \caption{Application control flow}
+         \label{fig:control_flow}
+     \end{figure}
+     
 \end{itemize}
 
-\subsubsection{Controller sub-unit}
-This sub-unit executes the application logic, sends instructions to the actuators, and reads inputs from sensors in the system. It is responsible for synchronising the GUI with the processes in the hardware. Besides, it monitors and controls the parameters of the input devices and generates output signals to implement desired tasks.
+\subsubsection{Software and controller sub-unit}
+This sub-unit executes the application logic, sends instructions to the actuators, and reads inputs from sensors in the system. It is responsible for synchronizing the GUI with the processes in the hardware. Besides, it monitors and controls the parameters of the input devices and generates output signals to implement desired tasks.
 \par
-The choice of a micro-controller for this application was guided by the selected interface, a touch LCD. Graphics library support (Light and Versatile Embedded Graphics Library (LVGL) and the Qt/QML graphics libraries), board support (NXP and STM32F4 families), platform support (Zephyr(C/C++) or Mbed(C++)) and the cost. Figure \ref{fig:mcu selection} shows the selection procedure for a micro-controller for this application taking into considerations the above factors.STM32F4 family boards specifically STM32F407VET6 board was selected due to the following reasons.
+The selection of a micro-controller for this application was based on the following requirements:
 \begin{enumerate}
-    \item The board is relatively cheaper as compared to NXP family
+    \item Support for a touch LCD screen. 32 Digital I/O pins are required in order to support a parallel 16-bit MCU Interface, and a 16-bit data bus is required for this application.
+    \item Support for real-time multi-threaded firmware. This necessitates support from RTOS-operating systems. This is to allow for several threads, at least 2 threads minimum: one for handling the GUI, and another for handling the application's business logic.
 \end{enumerate}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth,height=\textheight, keepaspectratio]{Figures/BoardSelection.png}
-    \caption{Board Selection}
-    \label{fig:mcu selection}
-\end{figure}
-
-% \begin{itemize}
-%     \item \textbf{Graphics library} 
-%     \par
-%     To develop graphics for a touch LCD, the choice of graphics libraries was between the Light and Versatile Embedded Graphics Library (LVGL) and the Qt/QML graphics libraries. These two are versatile and have great community support. Each library supports specific display drivers out-of-the-box. For this application, an LCD with an ILI9341 driver had been selected, therefore support for this specific driver was necessary. Drivers for a specific driver could also be developed from scratch in a long and tedious process. To avoid this, out-of-the-box support was required. LVGL tends to offer that support; therefore, it was selected as the graphics library for this application.
-%     \item \textbf{Board support} 
-%     \par
-%     LVGL library also provides support for specific board families out of the box, such as the NXP and STM32F4 families. LVGL support for these boards automatically means that this board has the number of ports required for LCD touch functionality.
-%     \item \textbf{Platform support}
-%     \par
-%     LVGL is just a graphics library. The board is required to support other peripherals such as the electromagnet, servo motor, weight and temperature measurement devices, and the solenoid valve. This can be done in an RTOS platform such Zephyr(C/C++) or Mbed(C++). However, these platforms support specific boards out-of-the-box, but custom boards could also be added. To make the project a little easier, an out-of-the-box was required. The two platforms tend to support the two boards. 
-%     \item \textbf{Price}
-%     \par
-%     This is the most crucial part of this selection. Both boards can be considered expensive relative to the project's budget, but the STM32F4 family boards can be relatively cheaper. Therefore, an STM32F407VET6 board was selected.
-% \end{itemize}
-
-\subsubsection{Electrical}
-\begin{itemize}
-    \item \textbf{Touch LCD connection}
-    \par
-    STM32F407VET6 board provides a dedicated interface for touch LCD with FSMC interface as shown in figure \ref{fig:fsmc_interface}.
-    \begin{figure}[H]
+A STM32F407VET6 microcontroller board shown in figure \ref{fig:fsmc_interface} was selected for this application. It has a dedicated FSMC interface for supporting LCD touch screens. Besides, it can also support real-time multi-threaded firmware.
+ \begin{figure}[H]
         \centering
         \includegraphics[width=.45\textwidth, height=.325\textheight]{Figures/STM32F407VET6.png}
         \caption[Load cells circuit]{FSMC interface in STM32F407VET6 \cite{mcu_lcd}}
         \includegraphics[width=.45\textwidth, height=.325\textheight]{Figures/stm32f407vet6_with_lcd.png}
         \caption[STM32 connected with LCD]{STM32 connected with LCD \cite{mcu_lcd}}
         \label{fig:fsmc_interface}
-    \end{figure}
-\end{itemize}
-
-\subsubsection{Software and control}
-The logic of the whole application is shown in figure \ref{fig:application_logic}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{Figures/LOGIC.png}
-    \caption{Application logic}
-    \label{fig:application_logic}
 \end{figure}
 
-The application requires the user to set the number of steps of the experiment or the time interval between the steps. This is done by sliding the slide handle of one of the inputs in the touch GUI. When the user presses the handle on the input of the steps, the system automatically adjusts the time interval between the steps and vice versa. Once the steps are set, the user clicks on the start button. The system then turns the valve by one step after starting the timer. This is done simultaneously with commencement of the discharge collection and the measurement of the discharge temperature.
-\par
-The system will continuously check if the time interval has elapsed and if it has, it will simultaneously stop the discharge collection and the temperature measurement.  It will then compute the differential change in temperature and measure the weight of the discharge. The results of this measurement are displayed in the GUI. The process is repeated for the set steps but the user has the option to cancel the experiment.
+Mbed-OS RTOS was selected for the development of the firmware for this application. It has a vast amount of APIs that simplify development and abstract the HAL code.
+\begin{itemize}
+    \item \textbf{Application architecture}\\
+    Figure \ref{fig:firmware_architecture} shows the architecture of the firmware for this application.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{Figures/firmwareArchitecture.jpg}
+        \caption{Firmware architecture}
+        \label{fig:firmware_architecture}
+    \end{figure}
+    The application starts in the main function where time tickers have been created for updating the UI. A low-priority thread is created for handling the GUI, basically updating and refreshing the GUI elements every 200ms. Another above-normal priority thread is also created with an event queue for handling the business logic of the application. This thread is controlled by an app controller class, which takes in the objects, functions, and function arguments of the driver classes and dispatches this into an event queue as events. Once an event has been dispatched, it can be canceled but it is unsafe as might lead to a memory leak. 
+    \par 
+    The graphical objects have callbacks assigned to only certain events they might generate. Such callbacks communicate with the app controller thread using a semaphore and dispatch an event into the queue. This is handled by the single core in the microcontroller board.
 
+    \item \textbf{Wired Remote Control}\\
+    The firmware for this application also supports remote control over an ethernet cable. This is enabled by a W5500 ethernet module onboard the electronics board. This type of control is also enabled by a desktop application shown in figure \ref{fig:desktop_application} made specifically for this application.
+    The communication between the PC, and the microcontroller board is through a protobuf protocol with typed fields.
+    \par
+    The setup for this type of control starts with setting a static IP address in a PC and then connecting the PC to the W5500 ethernet module, onboard the system. The same PC's static IP address is also inserted in the IP text fields on screen 2 of the application.  The port is kept in 1883. The connection is established once the connect button is clicked.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{Figures/desktop_v1.png}
+        \caption{Desktop application }
+        \label{fig:desktop_application}
+    \end{figure}
+\end{itemize}
