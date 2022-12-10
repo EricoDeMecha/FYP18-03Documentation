@@ -4,25 +4,229 @@ This section described the results obtained as per the objectives of the project
 \begin{itemize}
     \item The discharge flow control unit
     \item The discharge handling unit
-    \item Interface and control unit
+    \item The electrical and electronics unit
 \end{itemize}
 \subsection{The Discharge Flow Control unit}
-\par
-The design and fabrication process resulted in a  model assembly whose main constituent components are as shown in figure [TODO]. The objective of the discharge flow control unit was to design an automated flow control mechanism that could turn the ball valve in steps of less than one degree which was fully met. A stepper motor was used to achieve the above objective. As seen in figure [TODO], the opening and closing of the ball valve is controlled from the user interface by setting the required number of steps the servo motor has to turn(number of times to perform the experiment) from zero with increments of one. The existing ball valve turns a maximum of 90 degrees for the valve to be fully open. However, as earlier stated, the presence of a hinge at the ball valve interfered with the operation of the motor. The motor thus was calibrated with values within tolerable range to overcome this issue. Figure [TODO] below shows the code snippet of the servo motor calibration used to achieve the above functionality. The calibration from 0 to 76 degrees for the valve to be fully open unlike the normal 0 to 90 degrees means that the motor could turn in less than one degree.
+\par 
+The design and fabrication process resulted in a  model assembly whose main constituent components are as shown in figure \ref{fig:Discharge Flow Control Unit}.
+\begin{figure}[H]
+            \centering
+            \includegraphics[width=.85\textwidth]{Figures/flow control Results.jpg}
+            \caption{Discharge Flow Control Unit}
+            \label{fig:Discharge Flow Control Unit}
+        \end{figure}
+The objective of this unit was to design an automated flow control mechanism that could turn the ball valve in steps of less than one degree which was met. A stepper motor was used to achieve the above objective. As seen in figure \ref{fig:Setting the number of steps from the user interface}, the opening and closing of the ball valve is controlled from the user interface by setting the required number of steps the servo motor has to turn(number of times to perform the experiment) from zero with increments of one. The existing ball valve turns a maximum of 90 degrees for the valve to be fully open.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.85\textwidth]{Figures/vid.jpg}
+\caption{Setting the number of steps from the user interface}
+\label{fig:Setting the number of steps from the user interface}
+\end{figure}
+However, as earlier stated, the presence of a hinge at the ball valve interfered with the operation of the motor. The motor was thus calibrated with limits from 0 to 76 degrees. Figure \ref{fig: Servo Motor Calibration} below shows the code snippet of the servo motor calibration used to achieve the above functionality. The calibration from a minimum value of 0 to a maximum value of 76 degrees for the valve to be fully open unlike the normal 0 to 90 degrees means that the motor actually turns in less than one degree.
+\begin{figure}[H]
+            \centering
+            \includegraphics[width=.85\textwidth]{Figures/servo_limits.png}
+            \caption{Servo Motor Calibration}
+            \label{fig: Servo Motor Calibration}
+        \end{figure}
 \subsection{The discharge handling unit}
-\par
-The objective of this section was to design a discharge handling mechanism with incorporated time, weight, and temperature measurements. Figure [TODO] below, shows the handling mechanism. An HX711 temperature probe is used to get real-time temperature values which are sent to the interface. Four load cells have been used to get the weight of the collected discharge. The time is attained automatically by setting the required number of steps to perform the experiment. Figure[TODO] below shows the real values from both the HX711 temperature probe and the load cells as recorded and sent to the user interface.
-\subsection{Interface and Control Unit}
-\par
+The objective of this unit was to design a discharge handling mechanism with automated weight and temperature measurements. Figure \ref{fig: Discharge Handling Unit} below, shows the handling mechanism. 
+\begin{figure}[H]
+            \centering
+            \includegraphics[height=.5\textheight]{Figures/discharge handling results.jpg}
+            \caption{Discharge Handling Unit}
+            \label{fig: Discharge Handling Unit}
+        \end{figure}
+A DS18B20 temperature probe is used to get real-time temperature values which are sent to the interface. Four load cells have been used to get the weight of the collected discharge. The time is attained automatically by setting the required number of steps to perform the experiment. Figure \ref{fig: Readings as recorded} below shows the real-time values from both the DS18B20 temperature probe and the load cells as recorded and sent to the user interface. From the interface, one can easily note the weight of the discharge (15.56Kg), the temperature of the collected discharge (23.62 degrees), and the time of the run (38 seconds).
+\begin{figure}[H]
+            \centering
+            \includegraphics[width=.85\textwidth]{Figures/vid.jpg}
+            \caption{Readings as recorded}
+            \label{fig: Readings as recorded}
+        \end{figure}
+\subsection{Electrical and Electronics Unit}
+Figure \ref{fig: Electrical Assembly} and figure \ref{fig: User Interface Mounted} show the electrical components developed on a proto-board including the components for the servo motor control, an LA-T8 electromagnet linear actuator control, an HX711, and a DS18B20 temperature probe. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{Figures/proto_board_assembled.jpg}
+\caption{Electrical Assembly}
+\label{fig: Electrical Assembly}
+\end{figure}
+        
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{Figures/proto_board_front.jpg}
+\caption{User Interface Mounted}
+\label{fig: User Interface Mounted}
+\end{figure}
+\subsection{Final Assembly}
+\par 
+Figure \ref{fig: Finally Assembly} below shows the final assembly inclusive of the discharge flow control unit, discharge handling unit, and the interface and control unit. The unit is designed and fabricated as a plug-and-play, in that it is not permanently fixed onto the machine but can be removed to allow for other experiments to be conducted.
+\begin{figure}[H]
+            \centering
+            \includegraphics[width=.7\textwidth]{Figures/FinalAssembly.jpeg}
+            \caption{Finally Assembly}
+            \label{fig: Finally Assembly}
+        \end{figure}
 
-
-\subsection{Final Aseembly}
-\par
-Figure [TODO] below shows the final assembly inclusive of the discharge flow control unit, discharge handling unit, and the interface and control unit. The unit is designed and fabricated as a plug-and-play, in that it is not permanently fixed onto the machine but can be removed to allow for other experiments to be conducted. Figure[TODO] shows the final assembly with a detailed view.
 \subsection{Experiments Conducted}
-\par
-The fluids experiments were conducted using the system. The objective was to determine the coefficient of discharge from the system and compare it with the one obtained from manually conducting the experiment. This was so as to determine whether the system reduced the human error that resulted from the manual operation of the machine during experiments. 
-\par
-During the experiment, three runs were conducted in total. With the system in place, it first reduced the number of operators from three to two. Secondly, when conducting the experiment, the user is required to set the number of steps [runs] to perform the experiment and the time. The system then auto-calibrates itself to determine the time allocation for each run. Figure [TODO] below shows screen 2 from the user interface which is used for automatically conducting the experiment. Pressing the start button freezes the back button. The results from each run are recorded via the necessary components and the values sent to be recorded under time, temperature, and weight. The system also indicated the number of runs one is conducting the experiment.
-Figure [TODO] below shows the results obtained from the manual operation to determine the coefficient of discharge of the venturi.
 
+The coefficient of discharge experiments was conducted using the system. The objective was to determine the coefficient of discharge from the system and compare it with the one obtained from manually conducting the experiment. This was so as to determine whether the system reduced the human error that resulted from the manual operation of the test rig. 
+\par
+During the experiment, four runs were conducted in total. One involved manual operation while three were done with the automated system.  With the system in place, it first reduced the number of operators from three to two. Secondly, when conducting the experiment, the user is required to only set the number of steps (runs) to perform the experiment and the time. The system then auto-calibrates itself to determine the time allocation for each run. Figure \ref{fig: Readings as recorded} shows screen 2 from the user interface which is used for automatically conducting the experiment. The results from each run are recorded via the necessary components and the values sent to be recorded under time, temperature, and weight. 
+\subsubsection{Experiment 1}
+Table \ref{tab:manual_exp} below shows the results obtained from the manual operation to determine the coefficient of discharge of the venturi.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[H]
+\centering
+\caption{Manual Experiment}
+\label{tab:manual_exp}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Step} & \textbf{Height 1} & \textbf{Height 2} & \textbf{Head} & \textbf{Weight 1} & \textbf{Weight 2} & \textbf{Weight} & \textbf{Temperature} & \textbf{Time} \\ \hline
+0  & 0   & 0   & 0   & 0     & 0     & 0                & 0  & 0     \\ \hline
+1  & 665 & 657 & 8   & 22    & 27.4  & 5.4              & 21 & 50.51 \\ \hline
+2  & 657 & 642 & 15  & 27.4  & 36.1  & 8.7              & 21 & 42.56 \\ \hline
+3  & 647 & 613 & 34  & 36.1  & 40.9  & 4.8              & 21 & 30.3  \\ \hline
+4  & 623 & 514 & 109 & 40.9  & 58.1  & 17.2             & 22 & 21.74 \\ \hline
+5  & 594 & 428 & 166 & 58.1  & 67.7  & 9.6              & 22 & 18.44 \\ \hline
+6  & 562 & 317 & 245 & 67.7  & 81.1  & 13.4             & 22 & 15.39 \\ \hline
+7  & 548 & 282 & 266 & 81.1  & 93.7  & 12.6             & 22 & 12.53 \\ \hline
+8  & 522 & 212 & 310 & 93.7  & 103.6 & 9.89999999999999 & 22 & 8.05  \\ \hline
+9  & 500 & 153 & 347 & 106.6 & 111.5 & 4.90000000000001 & 22 & 5.13  \\ \hline
+10 & 474 & 85  & 389 & 111.5 & 115.3 & 3.8              & 22 & 3.6   \\ \hline
+\end{tabular}%
+}
+\end{table}
+From table \ref{tab:manual_exp}, a graph of the actual flow rate $(Q_\text{act})$ versus the square root of the differential $\left(h_1-h_2\right)^{1 / 2}$ head was plotted as shown in Figure \ref{fig: Manual Experiment}. The coefficient of discharge $C_d$ was found to be 0.747773.
+\begin{figure}[H]
+            \centering
+        \includegraphics[width=.85\textwidth]{Figures/Manual_Exp.png}
+            \caption{Manual Experiment}
+            \label{fig: Manual Experiment}
+        \end{figure}
+\subsubsection{Experiment 1}
+\par
+The results from the second experiment are tabulated in table \ref{tab:experiment_1} below.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[H]
+\centering
+\caption{Experiment 1}
+\label{tab:experiment_1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Step 1} &
+  \textbf{Height 1} &
+  \textbf{Height 2} &
+  \textbf{Head} &
+  \textbf{Weight 1} &
+  \textbf{Weight 2} &
+  \textbf{Weight} &
+  \textbf{Temperature(deg. C)} &
+  \textbf{Time} \\ \hline
+0  & 390 & 390 & 0   & 5.61 & 5.61  & 0     & 24.5  &    \\ \hline
+1  & 390 & 375 & 15  & 5.61 & 12.2  & 6.59  & 23.62 & 38 \\ \hline
+2  & 365 & 345 & 20  & 5.14 & 12.56 & 7.42  & 23.38 & 34 \\ \hline
+3  & 315 & 280 & 35  & 5.36 & 15.94 & 10.58 & 23.44 & 30 \\ \hline
+4  & 287 & 237 & 50  & 5.76 & 18.45 & 12.69 & 23.5  & 26 \\ \hline
+5  & 244 & 188 & 56  & 5.79 & 19.05 & 13.26 & 23.5  & 23 \\ \hline
+6  & 205 & 133 & 72  & 5.79 & 18.7  & 12.91 & 23.56 & 19 \\ \hline
+7  & 177 & 90  & 87  & 5.75 & 17.64 & 11.89 & 23.5  & 15 \\ \hline
+8  & 150 & 59  & 91  & 5.75 & 16    & 10.25 & 23.62 & 12 \\ \hline
+9  & 135 & 29  & 106 & 5.74 & 13.6  & 7.86  & 23.56 & 8  \\ \hline
+10 & 116 & 3   & 113 & 5.67 & 11    & 5.33  & 23.56 & 4  \\ \hline
+\end{tabular}%
+}
+\end{table}
+\par
+The coefficient of discharge $C_d$ from the graph of the actual flow rate $(Q_\text{act})$ versus the square root of was found to be as shown in figure \ref{fig: Experiment1}. The $C_d$ from experiment 2 was however way below the actual $C_d$ with a percentage error of approximately 15 percent.
+\begin{figure}[H]
+            \centering
+        \includegraphics[width=.85\textwidth]{Figures/Experiment1.png}
+            \caption{Experiment1}
+            \label{fig: Experiment1}
+        \end{figure}
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\subsubsection{Experiment 2}
+The results from the third experiment are shown in table \ref{tab:experiment_2}
+\begin{table}[H]
+\centering
+\caption{Experiment 2}
+\label{tab:experiment_2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Step} &
+  \textbf{Height 1} &
+  \textbf{Height 2} &
+  \textbf{Head} &
+  \textbf{Weight 1} &
+  \textbf{Weight 2} &
+  \textbf{Weight} &
+  \textbf{Temperature(deg. C)} &
+  \textbf{Time} \\ \hline
+0 & 410 & 410 & 0   & 6.13 & 6.13  & 0     & 22.5  &    \\ \hline
+1 & 375 & 360 & 15  & 6.13 & 14.34 & 8.21  & 22.94 & 38 \\ \hline
+2 & 359 & 342 & 17  & 6.01 & 15.9  & 9.89  & 23.06 & 34 \\ \hline
+3 & 330 & 295 & 35  & 6.11 & 18.85 & 12.74 & 23.12 & 30 \\ \hline
+4 & 295 & 243 & 52  & 6.11 & 20.55 & 14.44 & 23.19 & 27 \\ \hline
+5 & 256 & 185 & 71  & 6.11 & 21.25 & 15.14 & 23.19 & 23 \\ \hline
+6 & 214 & 119 & 95  & 6.2  & 21.05 & 14.85 & 23.25 & 19 \\ \hline
+7 & 192 & 56  & 136 & 6.13 & 21.25 & 15.12 & 23.25 & 15 \\ \hline
+\end{tabular}%
+}
+\end{table}
+Figure \ref{fig: Experiment2} depicts the coefficient of discharge (0.76198) from the second round. 
+\begin{figure}[H]
+            \centering
+        \includegraphics[width=.85\textwidth]{Figures/Experiment2.png}
+            \caption{Experiment2}
+            \label{fig: Experiment2}
+        \end{figure}
+\subsubsection{Experimnet 3}
+\par
+The results from the third run are illustrated in table \ref{tab:experiment_3}.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[H]
+\centering
+\caption{Experiment 3}
+\label{tab:experiment_3}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Step} &
+  \textbf{Height 1} &
+  \textbf{Height 2} &
+  \textbf{Head} &
+  \textbf{Weight 1 (kg)} &
+  \textbf{Weight 2 (kg)} &
+  \textbf{Weight} &
+  \textbf{Temp (degrees)} &
+  \textbf{Time} \\ \hline
+0 & 327 & 327 & 0  & 6.28 & 6.28  & 0     & 21.81 &    \\ \hline
+1 & 275 & 265 & 10 & 6.28 & 16    & 9.72  & 21.88 & 48 \\ \hline
+2 & 250 & 231 & 19 & 5.28 & 18.23 & 12.95 & 22    & 43 \\ \hline
+3 & 205 & 165 & 40 & 5.39 & 21.72 & 16.33 & 22.12 & 38 \\ \hline
+4 & 157 & 105 & 52 & 5.39 & 23.1  & 17.71 & 22.19 & 33 \\ \hline
+5 & 121 & 56  & 65 & 5.41 & 22.95 & 17.54 & 22.19 & 28 \\ \hline
+6 & 88  & 13  & 75 & 5.4  & 21.67 & 16.27 & 22.25 & 23 \\ \hline
+\end{tabular}%
+}
+\end{table}
+\par
+The graphical illustration of a graph of the actual flow rate $(Q_\text{act})$ versus the square root resulted in the final coefficient of discharge of 0.82175. Compared to the results from the manual experiment, there was a 10 percent reduction in the overall error. 
+\begin{figure}[H]
+            \centering
+        \includegraphics[width=.85\textwidth]{Figures/Experiment3.png}
+            \caption{Experiment3}
+            \label{fig: Experiment3}
+        \end{figure}
+\par
+The system reduced the overall human error margin that arises from the manual operation of the experiment by approximately 10 percent as depicted from the values obtained in the second and final run of the experiment. The calculations were based on the average coefficient of discharge of the venturi, 0.985. The first automatic run was however not as successful as anticipated. This was because of the very high-pressure discharge from the main pipeline that strained the LA-T8 electromagnet linear actuator leading to delays in discharge diversion and thus incorrect readings. The pressure was however adjusted to the required level.
