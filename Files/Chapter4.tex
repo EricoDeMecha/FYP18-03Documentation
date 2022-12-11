@@ -1,51 +1,51 @@
 \section{Results and Discussion}
-\par
-This section described the results obtained as per the objectives of the project. The section is divided into three main sections;
-\begin{itemize}
-    \item The discharge flow control unit
-    \item The discharge handling unit
-    \item The electrical and electronics unit
-\end{itemize}
-\subsection{The Discharge Flow Control unit}
-\par 
-The design and fabrication process resulted in a  model assembly whose main constituent components are as shown in figure \ref{fig:Discharge Flow Control Unit}.
+This section describes the results obtained from the three main sections of this project. 
+\subsection{Final Design}
+The complete design in exploded view is shown in figure \ref{fig:unit_exploded_view}.
 \begin{figure}[H]
-            \centering
-            \includegraphics[width=.85\textwidth]{Figures/flow control Results.jpg}
-            \caption{Discharge Flow Control Unit}
-            \label{fig:Discharge Flow Control Unit}
-        \end{figure}
-The objective of this unit was to design an automated flow control mechanism that could turn the ball valve in steps of less than one degree which was met. A stepper motor was used to achieve the above objective. As seen in figure \ref{fig:Setting the number of steps from the user interface}, the opening and closing of the ball valve is controlled from the user interface by setting the required number of steps the servo motor has to turn(number of times to perform the experiment) from zero with increments of one. The existing ball valve turns a maximum of 90 degrees for the valve to be fully open.
+    \centering
+    \includegraphics[height=.7\textheight]{Figures/DischargeFlowControlAssemblyExploded.PNG}
+    \caption{Unit Exploded view}
+    \label{fig:unit_exploded_view}
+\end{figure}
+\subsection{The Discharge Flow Control unit}
+The objective of this unit was to design and fabricate an automated flow control mechanism that can operate the ball valve in steps of less than 1 degree and a flow diverter mechanism that can divert the flow in a second. 
+\par
+Figure \ref{fig:Setting the number of steps from the user interface} shows the virtual arc dial labelled 'Valve' that is used for opening and closing the ball valve. The dial has been programmed to operate the servo motor in steps of 1 degree.
 \begin{figure}[H]
 \centering
-\includegraphics[width=.85\textwidth]{Figures/vid.jpg}
-\caption{Setting the number of steps from the user interface}
+\includegraphics{Figures/flow_cotrol_control.jpg}
+\caption{Controls for the flow control}
 \label{fig:Setting the number of steps from the user interface}
 \end{figure}
-However, as earlier stated, the presence of a hinge at the ball valve interfered with the operation of the motor. The motor was thus calibrated with limits from 0 to 76 degrees. Figure \ref{fig: Servo Motor Calibration} below shows the code snippet of the servo motor calibration used to achieve the above functionality. The calibration from a minimum value of 0 to a maximum value of 76 degrees for the valve to be fully open unlike the normal 0 to 90 degrees means that the motor actually turns in less than one degree.
+The protrusion on the ball valve, marking the closed position of the valve lever was used as a datum for testing and calibration. A full rotation from one face of the protrusion to the other about the center of the ball valve is equal to a 90-degree rotation. The selected servo motor covers this in just only a 76-degree rotation. This is a clear indication that the selected servo motor can turn in steps of less than 1 degree.
+\par
+The LAT8 linear actuator used for flow diversion could divert the flow in between 1 second and 1.5 seconds depending on the pressure set in the main pump. Pressure equivalent to a barometric height of 390 mm across the venturi was found to be ideal for diversion in 1.2 seconds.
+\par
+Figure \ref{fig:Discharge Flow Control Unit} shows the assembly of the fabricated unit. 
 \begin{figure}[H]
-            \centering
-            \includegraphics[width=.85\textwidth]{Figures/servo_limits.png}
-            \caption{Servo Motor Calibration}
-            \label{fig: Servo Motor Calibration}
-        \end{figure}
+\centering
+\includegraphics[width=.55\textwidth]{Figures/flow control Results.jpg}
+\caption{Discharge Flow Control Unit}
+\label{fig:Discharge Flow Control Unit}
+\end{figure}
 \subsection{The discharge handling unit}
-The objective of this unit was to design a discharge handling mechanism with automated weight and temperature measurements. Figure \ref{fig: Discharge Handling Unit} below, shows the handling mechanism. 
+The objective was to automate weight and temperature measurements, and re-design the discharge collection tank such that it can discharge in the least time possible. 
+\par 
+A DS18B20 temperature probe and four load cells were used for measuring temperature, and the weight of the collected discharge after every 200 ms. These values are continuously displayed on the interface. 
+\par
+The tank could also collect 25 kg of discharge, and is fitted with a $1 \frac{1}{2} inch$ ball valve at the bottom that can discharge a full tank in 12.73 seconds.
+\par
+Figure \ref{fig: Discharge Handling Unit} below, shows the assembly of the fabricated unit. 
 \begin{figure}[H]
-            \centering
-            \includegraphics[height=.5\textheight]{Figures/discharge handling results.jpg}
-            \caption{Discharge Handling Unit}
-            \label{fig: Discharge Handling Unit}
-        \end{figure}
-A DS18B20 temperature probe is used to get real-time temperature values which are sent to the interface. Four load cells have been used to get the weight of the collected discharge. The time is attained automatically by setting the required number of steps to perform the experiment. Figure \ref{fig: Readings as recorded} below shows the real-time values from both the DS18B20 temperature probe and the load cells as recorded and sent to the user interface. From the interface, one can easily note the weight of the discharge (15.56Kg), the temperature of the collected discharge (23.62 degrees), and the time of the run (38 seconds).
-\begin{figure}[H]
-            \centering
-            \includegraphics[width=.85\textwidth]{Figures/vid.jpg}
-            \caption{Readings as recorded}
-            \label{fig: Readings as recorded}
-        \end{figure}
+\centering
+\includegraphics[height=.5\textheight]{Figures/discharge handling results.jpg}
+\caption{Discharge Handling Unit}
+\label{fig: Discharge Handling Unit}
+\end{figure}
+
 \subsection{Electrical and Electronics Unit}
-Figure \ref{fig: Electrical Assembly} and figure \ref{fig: User Interface Mounted} show the electrical components developed on a proto-board including the components for the servo motor control, an LA-T8 electromagnet linear actuator control, an HX711, and a DS18B20 temperature probe. 
+Figure \ref{fig: Electrical Assembly} and \ref{fig: User Interface Mounted} show the electrical and electronic components developed on a proto-board including the components for the servo motor control, an LA-T8 electromagnet linear actuator control, an HX711, and a DS18B20 temperature probe. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.7\textwidth]{Figures/proto_board_assembled.jpg}
@@ -73,7 +73,7 @@ Figure \ref{fig: Finally Assembly} below shows the final assembly inclusive of t
 
 The coefficient of discharge experiments was conducted using the system. The objective was to determine the coefficient of discharge from the system and compare it with the one obtained from manually conducting the experiment. This was so as to determine whether the system reduced the human error that resulted from the manual operation of the test rig. 
 \par
-During the experiment, four runs were conducted in total. One involved manual operation while three were done with the automated system.  With the system in place, it first reduced the number of operators from three to two. Secondly, when conducting the experiment, the user is required to only set the number of steps (runs) to perform the experiment and the time. The system then auto-calibrates itself to determine the time allocation for each run. Figure \ref{fig: Readings as recorded} shows screen 2 from the user interface which is used for automatically conducting the experiment. The results from each run are recorded via the necessary components and the values sent to be recorded under time, temperature, and weight. 
+During the experiment, four runs were conducted in total. One involved manual operation while three were done with the automated system.  With the system in place, it first reduced the number of operators from three to two. Secondly, when conducting the experiment, the user is required to only set the number of steps (runs) to perform the experiment and the maximum time interval. The system then auto-calibrates itself to determine the time allocation for each run. The results from each run are recorded via the necessary components and the values sent to be recorded under time, temperature, and weight. 
 \subsubsection{Experiment 1}
 Table \ref{tab:manual_exp} below shows the results obtained from the manual operation to determine the coefficient of discharge of the venturi.
 
@@ -221,7 +221,7 @@ The results from the third run are illustrated in table \ref{tab:experiment_3}.
 }
 \end{table}
 \par
-The graphical illustration of a graph of the actual flow rate $(Q_\text{act})$ versus the square root resulted in the final coefficient of discharge of 0.82175. Compared to the results from the manual experiment, there was a 10 percent reduction in the overall error. 
+The graphical illustration of a graph of the actual flow rate $(Q_\text{act})$ versus the square root resulted in the final coefficient of discharge of 0.82175. Compared to the results from the manual experiment, there was a 8.213 \% percent reduction in the overall error. 
 \begin{figure}[H]
             \centering
         \includegraphics[width=.85\textwidth]{Figures/Experiment3.png}
